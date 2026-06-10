@@ -10,6 +10,11 @@
   </head>
 
   <body>
+    <%# フラッシュメッセージ（「登録しました」「削除しました」などの通知） %>
+    <% flash.each do |type, message| %>
+      <p><%= message %></p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,51 @@
+<%# 登録・編集で共通して使うフォームのパーツ %>
+
+<%# 新規登録なら admin_items_path へ POST、編集なら admin_item_path へ PATCH %>
+<%= form_with model: item, url: item.new_record? ? admin_items_path : admin_item_path(item) do |f| %>
+
+  <%# バリデーションエラーがある場合に表示 %>
+  <% if item.errors.any? %>
+    <ul>
+      <% item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :item_code, "商品番号" %>
+    <%= f.number_field :item_code %>
+  </div>
+
+  <div>
+    <%= f.label :name, "備品名" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :stock, "在庫数" %>
+    <%= f.number_field :stock %>
+  </div>
+
+  <div>
+    <%= f.label :order_trigger, "注文トリガー数" %>
+    <%= f.number_field :order_trigger %>
+  </div>
+
+  <div>
+    <%= f.label :reorder_quantity, "目標補充数" %>
+    <%= f.number_field :reorder_quantity %>
+  </div>
+
+  <div>
+    <%= f.label :image, "画像" %>
+    <%= f.file_field :image, accept: "image/*" %>
+    <%# 編集時：すでに画像が登録されていれば表示する %>
+    <% if item.image.attached? %>
+      <%= image_tag item.image, width: 100 %>
+    <% end %>
+  </div>
+
+  <%= f.submit %>
+
+<% end %>
