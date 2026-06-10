@@ -1,0 +1,44 @@
+// ===================================================
+// リセット CSS
+// ブラウザごとのデフォルトスタイルの差をなくす
+// ===================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;  // padding・border を幅に含める
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: $font-size-base;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $color-text;
+  background-color: $color-bg;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+ul, ol {
+  list-style: none;
+}

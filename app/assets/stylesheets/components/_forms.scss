@@ -1,0 +1,46 @@
+// ===================================================
+// フォームのスタイル
+// ===================================================
+
+.form {
+  &__group {
+    margin-bottom: $spacing-md;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: $spacing-xs;
+    font-weight: bold;
+    font-size: $font-size-sm;
+    color: $color-text;
+  }
+
+  &__input,
+  &__select,
+  &__textarea {
+    width: 100%;
+    padding: $spacing-sm $spacing-md;
+    border: 1px solid $color-border;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-base;
+    color: $color-text;
+    background-color: $color-white;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+    }
+  }
+
+  &__textarea {
+    resize: vertical;  // 縦方向だけリサイズ可能にする
+    min-height: 120px;
+  }
+
+  &__error {
+    color: $color-danger;
+    font-size: $font-size-sm;
+    margin-top: $spacing-xs;
+  }
+}

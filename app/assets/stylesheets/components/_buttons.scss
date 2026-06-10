@@ -1,0 +1,47 @@
+// ===================================================
+// ボタンのスタイル
+// ===================================================
+
+// ボタンの共通スタイル（.btn クラスを付けると適用される）
+.btn {
+  display: inline-block;
+  padding: $spacing-sm $spacing-lg;
+  font-size: $font-size-base;
+  font-weight: bold;
+  border-radius: $border-radius-md;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.85;
+    text-decoration: none;
+  }
+
+  // メインボタン（.btn.btn--primary）
+  &--primary {
+    background-color: $color-primary;
+    color: $color-white;
+  }
+
+  // 危険な操作（削除など）（.btn.btn--danger）
+  &--danger {
+    background-color: $color-danger;
+    color: $color-white;
+  }
+
+  // 枠線だけのボタン（.btn.btn--outline）
+  &--outline {
+    background-color: transparent;
+    border: 2px solid $color-primary;
+    color: $color-primary;
+  }
+
+  // 小さいボタン（.btn.btn--sm）
+  &--sm {
+    padding: $spacing-xs $spacing-md;
+    font-size: $font-size-sm;
+  }
+}

@@ -1,0 +1,53 @@
+# ===================================================
+# 開発用 Dockerfile（本番用は別途 Dockerfile を使う）
+# Mac でコードを編集して、コンテナ内で Rails を動かす構成
+# ===================================================
+
+# Ruby のバージョンを引数で指定できるようにしておく
+ARG RUBY_VERSION=3.3.10
+
+# Docker Hub の公式 Ruby イメージ（slim = 最小限のもの）をベースにする
+FROM ruby:${RUBY_VERSION}-slim
+
+# コンテナ内での作業ディレクトリを /rails に設定
+WORKDIR /rails
+
+# 必要なシステムパッケージをインストール
+# build-essential : Cコンパイラなど（一部のgem のビルドに必要）
+# curl            : ファイルのダウンロードなどに使う
+# git             : gem を GitHub から取得する場合などに使う
+# libsqlite3-dev  : SQLite の開発用ライブラリ（sqlite3 gem に必要）
+# libvips         : 画像処理ライブラリ（image_processing gem に必要）
+# pkg-config      : ライブラリの設定情報を取得するツール
+# libyaml-dev     : YAML 処理ライブラリ（Psych gem に必要）
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y \
+      build-essential \
+      curl \
+      git \
+      libsqlite3-dev \
+      libvips \
+      pkg-config \
+      libyaml-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# 環境変数の設定
+# RAILS_ENV=development : 開発モードで動かす
+# BUNDLE_PATH           : gem のインストール先（ボリュームにキャッシュさせる）
+ENV RAILS_ENV=development \
+    BUNDLE_PATH=/usr/local/bundle
+
+# まず Gemfile だけコピーして bundle install する
+# （コードが変わっても gem が変わってなければキャッシュが効いて速い）
+# Gemfile* = Gemfile と Gemfile.lock の両方をコピー（Gemfile.lock がなくても OK）
+COPY Gemfile* ./
+RUN bundle install
+
+# アプリのコードをすべてコピー
+COPY . .
+
+# 起動時に実行されるスクリプト（DB準備など）
+ENTRYPOINT ["/rails/bin/docker-entrypoint-dev"]
+
+# Rails サーバーを 0.0.0.0 で起動（コンテナ外からアクセスできるようにする）
+CMD ["./bin/rails", "server", "-b", "0.0.0.0", "-p", "3000"]

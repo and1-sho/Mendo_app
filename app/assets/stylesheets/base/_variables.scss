@@ -1,0 +1,39 @@
+// ===================================================
+// 変数定義ファイル
+// 色・フォント・余白などをここで一元管理する
+// ===================================================
+
+// --- カラー ---
+$color-primary:    #3b82f6;   // メインカラー（ボタンなど）
+$color-secondary:  #64748b;   // サブカラー
+$color-danger:     #ef4444;   // エラー・削除など
+$color-success:    #22c55e;   // 成功・保存など
+$color-warning:    #f59e0b;   // 警告
+
+$color-text:       #1e293b;   // 本文テキスト
+$color-text-muted: #94a3b8;   // 薄いテキスト（補足情報など）
+$color-bg:         #f8fafc;   // 背景色
+$color-white:      #ffffff;
+$color-border:     #e2e8f0;   // 枠線の色
+
+// --- フォント ---
+$font-family-base: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+$font-size-base:   16px;
+$font-size-sm:     14px;
+$font-size-lg:     18px;
+$line-height-base: 1.6;
+
+// --- 余白（spacing） ---
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// --- 角丸 ---
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 16px;
+
+// --- 最大幅 ---
+$container-max-width: 1200px;

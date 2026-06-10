@@ -1,0 +1,37 @@
+# ===================================================
+# 開発環境の Docker Compose 設定
+# 「docker compose up」でRailsサーバーが起動する
+# ===================================================
+
+services:
+  web:
+    # Dockerfile.dev をもとにイメージをビルドする
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+
+    # ホスト（Mac）の 3000番ポートをコンテナの 3000番ポートに繋ぐ
+    # → ブラウザで http://localhost:3000 にアクセスできる
+    ports:
+      - "3000:3000"
+
+    # コンテナ内で使う環境変数（.env ファイルから自動で読み込む）
+    env_file:
+      - .env
+
+    volumes:
+      # ホストのコードをコンテナにリアルタイムで同期する
+      # → Mac で編集したファイルがすぐコンテナに反映される
+      - .:/rails
+
+      # gem のキャッシュをボリュームに保存する
+      # → コンテナを作り直しても bundle install をやり直さなくて済む
+      - bundle_cache:/usr/local/bundle
+
+    # rails console など対話的な操作ができるようにする
+    stdin_open: true
+    tty: true
+
+# gem キャッシュ用の名前付きボリューム
+volumes:
+  bundle_cache:

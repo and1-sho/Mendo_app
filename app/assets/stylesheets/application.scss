@@ -1,0 +1,18 @@
+// ===================================================
+// アプリ全体のスタイルシートのエントリポイント
+// ここで各 SCSS ファイルを読み込む（順番が重要）
+// ===================================================
+
+// 1. 変数・リセットなど基礎的なスタイル（先に読み込む）
+@import "base/variables";
+@import "base/reset";
+@import "base/typography";
+
+// 2. レイアウト（ヘッダー・フッター・サイドバーなど）
+@import "layouts/header";
+@import "layouts/footer";
+
+// 3. コンポーネント（ボタン・フォームなど再利用パーツ）
+@import "components/buttons";
+@import "components/forms";
+@import "components/flash";
