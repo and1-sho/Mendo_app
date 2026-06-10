@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # ヘルスチェック用（サーバーが正常に動いているか確認するURL）
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # 管理画面（備品の一覧・登録・編集・削除）
+  resources :admin_items, path: "admin/items"
+
+  # トップページ（画面①：テンキー入力画面）※ブランチ③で実装
+  # root "inputs#index"
 end

@@ -1,0 +1,39 @@
+<h1>備品一覧</h1>
+
+<%= link_to "新規登録", new_admin_item_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>商品番号</th>
+      <th>備品名</th>
+      <th>在庫数</th>
+      <th>注文トリガー数</th>
+      <th>目標補充数</th>
+      <th>発注量</th>
+      <th>画像</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.item_code %></td>
+        <td><%= item.name %></td>
+        <td><%= item.stock %></td>
+        <td><%= item.order_trigger %></td>
+        <td><%= item.reorder_quantity %></td>
+        <td><%= item.order_quantity %></td>
+        <td>
+          <% if item.image.attached? %>
+            <%= image_tag item.image, width: 60 %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to "編集", edit_admin_item_path(item) %>
+          <%= button_to "削除", admin_item_path(item), method: :delete, data: { turbo_confirm: "削除してよいですか？" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
