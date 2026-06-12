@@ -1,0 +1,53 @@
+<h1>商品番号を入力してください</h1>
+
+<%# 入力された番号を表示するエリア %>
+<p id="display">-</p>
+
+<%# 決定ボタンを押すとフォームをサーバーに送信する %>
+<%= form_with url: inputs_path, method: :post, id: "numpad-form" do |f| %>
+  <%# JSで数字を入れる隠しフィールド %>
+  <%= f.hidden_field :item_code, id: "item-code-input", value: "" %>
+
+  <%# テンキーのボタン配置 %>
+  <button type="button" onclick="addNumber('1')">1</button>
+  <button type="button" onclick="addNumber('2')">2</button>
+  <button type="button" onclick="addNumber('3')">3</button>
+  <button type="button" onclick="addNumber('4')">4</button>
+  <button type="button" onclick="addNumber('5')">5</button>
+  <button type="button" onclick="addNumber('6')">6</button>
+  <button type="button" onclick="addNumber('7')">7</button>
+  <button type="button" onclick="addNumber('8')">8</button>
+  <button type="button" onclick="addNumber('9')">9</button>
+  <button type="button" onclick="addNumber('0')">0</button>
+
+  <%# 1文字消すボタン %>
+  <button type="button" onclick="deleteNumber()">1文字消す</button>
+
+  <%# 決定ボタン（フォームを送信する） %>
+  <button type="submit">決定</button>
+<% end %>
+
+<script>
+  // 入力された番号を画面に表示する関数
+  function addNumber(num) {
+    var input = document.getElementById('item-code-input');
+    var display = document.getElementById('display');
+
+    // 最大8桁まで入力できる
+    if (input.value.length >= 8) return;
+
+    input.value += num;
+    display.textContent = input.value;
+  }
+
+  // 1文字消す関数
+  function deleteNumber() {
+    var input = document.getElementById('item-code-input');
+    var display = document.getElementById('display');
+
+    input.value = input.value.slice(0, -1);
+
+    // 何も入力されていない場合は「-」を表示する
+    display.textContent = input.value || '-';
+  }
+</script>
