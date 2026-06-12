@@ -2,3 +2,12 @@
  * MVPではスタイルなし。
  * スタッフがデザインを担当する際にここにCSSを追加する。
  */
+
+/* cssファイルの読み込み */
+/*
+ *= require destyle
+ *= require base
+ *= require layout
+ *= require components
+ *= require pages/item-code
+ */

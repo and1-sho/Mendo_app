@@ -1,0 +1,129 @@
+@media screen and (min-width: 320px) {
+  /* タブレット縦用レイアウト 320px以上の範囲に収めるデザインはこの中に記述 */
+  /*==========================================================
+        　　TB縦__商品番号（入力）
+  ==============================================================*/
+  .item-code {
+    width: 100vw;
+    height: 100svh;
+    display: grid;
+    place-content: center;
+    padding-top: 40px;
+  }
+
+  .page-title {
+    text-align: center;
+    /* font-size: 32px; */
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: #111;
+  }
+
+  .page-title .accent {
+    color: #ff8401;
+  }
+
+  .input-code {
+    text-align: center;
+    font-size: 136px;
+    color: var(--color-accent);
+    /* margin-bottom: 88px; */
+    margin: 36px 0 56px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding-left: 16px;
+  }
+
+  .num-btn__box {
+    font-size: 64px;
+    font-weight: 600;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: fit-content;
+    margin: 0 auto;
+    gap: 22px;
+  }
+
+  .num-btn {
+    display: grid;
+    place-content: center;
+    width: 176px;
+    height: 112px;
+    background-color: var(--color-white);
+    border-radius: 8px;
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
+  }
+
+  .empty {
+    visibility: hidden;
+  }
+
+  .num-btn__delete {
+    display: grid;
+    place-content: center;
+  }
+
+  .submit-btn__box {
+    width: 572px;
+    margin: 64px auto auto;
+  }
+
+  .submit-btn {
+    background: var(--color-accent);
+    color: var(--color-white);
+    width: 572px;
+    height: 120px;
+    border-radius: 20px;
+    /* font-size: 46px; */
+    font-size: 40px;
+    letter-spacing: 0.6em;
+    font-weight: 900;
+    text-align: center;
+  }
+
+  .submit-btn span {
+    padding-right: 16px;
+    padding-left: 40px;
+  }
+
+}
+
+
+@media screen and (min-width: 1024px) {
+  /* タブレット横用レイアウト 1024px以上の範囲に収めるデザインはこの中に記述 */
+  /*==========================================================
+        　　TB横__商品番号（入力）
+  ==============================================================*/
+  .item-code {
+    position: relative;
+  }
+
+  .input-code {
+    margin-bottom: 60px;
+  }
+
+  .num-btn__box {
+    font-size: 64px;
+    gap: 18px;
+  }
+
+  .num-btn {
+    width: 160px;
+    height: 106px;
+  }
+
+  .submit-btn__box {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: auto;
+  }
+
+  .submit-btn {
+    width: auto;
+    height: auto;
+    padding: 40px;
+    font-size: 38px;
+  }
+}
