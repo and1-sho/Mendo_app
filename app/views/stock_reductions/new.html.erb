@@ -1,0 +1,64 @@
+<%# 備品の画像・商品番号・備品名を表示 %>
+<p>商品番号: <%= @item.item_code %></p>
+<p>備品名: <%= @item.name %></p>
+<p>現在の在庫数: <%= @item.stock %></p>
+
+<% if @item.image.attached? %>
+  <%= image_tag @item.image %>
+<% else %>
+  <p>画像なし</p>
+<% end %>
+
+<%# 個数入力エリア（デフォルトは1） %>
+<p id="display">1</p>
+
+<%# 決定ボタンを押すとフォームをサーバーに送信する %>
+<%= form_with url: stock_reductions_path, method: :post do |f| %>
+  <%# 備品のIDをサーバーに渡す %>
+  <%= f.hidden_field :item_id, value: @item.id %>
+
+  <%# JSで個数を入れる隠しフィールド（デフォルトは1） %>
+  <%= f.hidden_field :quantity, id: "quantity-input", value: "1" %>
+
+  <%# テンキーのボタン配置 %>
+  <button type="button" onclick="addNumber('1')">1</button>
+  <button type="button" onclick="addNumber('2')">2</button>
+  <button type="button" onclick="addNumber('3')">3</button>
+  <button type="button" onclick="addNumber('4')">4</button>
+  <button type="button" onclick="addNumber('5')">5</button>
+  <button type="button" onclick="addNumber('6')">6</button>
+  <button type="button" onclick="addNumber('7')">7</button>
+  <button type="button" onclick="addNumber('8')">8</button>
+  <button type="button" onclick="addNumber('9')">9</button>
+  <button type="button" onclick="addNumber('0')">0</button>
+
+  <%# 1文字消すボタン %>
+  <button type="button" onclick="deleteNumber()">1文字消す</button>
+
+  <%# 決定ボタン %>
+  <button type="submit">決定</button>
+<% end %>
+
+<%# 戻るボタン（画面①へ） %>
+<%= link_to "戻る", root_path %>
+
+<script>
+  function addNumber(num) {
+    var input = document.getElementById('quantity-input');
+    var display = document.getElementById('display');
+
+    // 最大4桁まで入力できる
+    if (input.value.length >= 4) return;
+
+    input.value += num;
+    display.textContent = input.value;
+  }
+
+  function deleteNumber() {
+    var input = document.getElementById('quantity-input');
+    var display = document.getElementById('display');
+
+    input.value = input.value.slice(0, -1);
+    display.textContent = input.value || '-';
+  }
+</script>
