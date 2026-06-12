@@ -10,14 +10,24 @@
   </head>
 
   <body>
-    <%# フラッシュメッセージ（デザインはスタッフが担当） %>
+    <%# フラッシュメッセージ（数秒後に自動で消える） %>
     <% if flash[:notice] %>
-      <p><%= flash[:notice] %></p>
+      <p id="flash-notice"><%= flash[:notice] %></p>
     <% end %>
     <% if flash[:alert] %>
-      <p><%= flash[:alert] %></p>
+      <p id="flash-alert"><%= flash[:alert] %></p>
     <% end %>
 
     <%= yield %>
+
+    <script>
+      // フラッシュメッセージを3秒後に非表示にする
+      setTimeout(function() {
+        var notice = document.getElementById('flash-notice');
+        var alert  = document.getElementById('flash-alert');
+        if (notice) notice.style.display = 'none';
+        if (alert)  alert.style.display  = 'none';
+      }, 3000);
+    </script>
   </body>
 </html>
