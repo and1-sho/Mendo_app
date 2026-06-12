@@ -10,9 +10,12 @@
   </head>
 
   <body>
-    <%# フラッシュメッセージ（「登録しました」「削除しました」などの通知） %>
-    <% flash.each do |type, message| %>
-      <p><%= message %></p>
+    <%# フラッシュメッセージ（デザインはスタッフが担当） %>
+    <% if flash[:notice] %>
+      <p><%= flash[:notice] %></p>
+    <% end %>
+    <% if flash[:alert] %>
+      <p><%= flash[:alert] %></p>
     <% end %>
 
     <%= yield %>
