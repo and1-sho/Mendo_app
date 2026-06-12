@@ -1,5 +1,6 @@
 <h1>備品一覧</h1>
 
+<%= link_to "トップに戻る", root_path %>
 <%= link_to "新規登録", new_admin_item_path %>
 
 <table>
@@ -10,7 +11,6 @@
       <th>在庫数</th>
       <th>注文トリガー数</th>
       <th>目標補充数</th>
-      <th>発注量</th>
       <th>画像</th>
       <th>操作</th>
     </tr>
@@ -23,7 +23,6 @@
         <td><%= item.stock %></td>
         <td><%= item.order_trigger %></td>
         <td><%= item.reorder_quantity %></td>
-        <td><%= item.order_quantity %></td>
         <td>
           <% if item.image.attached? %>
             <%= image_tag item.image, width: 60 %>
