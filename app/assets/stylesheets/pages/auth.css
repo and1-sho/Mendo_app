@@ -2,7 +2,7 @@
 @media screen and (min-width: 320px) {
   /* タブレット縦用レイアウト 320px以上の範囲に収めるデザインはこの中に記述 */
   /*==========================================================
-        　　TB縦__ログイン
+        　　TB縦__ログイン・アカウント登録
   ==============================================================*/
   .auth-page {
     width: 100vw;
@@ -90,7 +90,8 @@
     opacity: 0.85;
   }
 
-  .login-btn {
+  .login-btn,
+  .signup-btn {
     background: var(--color-accent);
     color: var(--color-white);
     width: 100%;
@@ -101,6 +102,11 @@
     letter-spacing: 0.08em;
     font-weight: 900;
     text-align: center;
+  }
+
+  .signup-btn {
+    margin-top: 8px;
+    margin-bottom: -4px;
   }
 
   .auth-link {
@@ -114,12 +120,45 @@
     text-decoration: underline;
     text-underline-offset: 3px;
   }
+
+  /*=========== アカウント登録（未入力エラー） ===========*/
+  .error-messages {
+    border: solid 1.5px var(--color-accent);
+    border-radius: 10px;
+    margin-bottom: 28px;
+    padding: 16px;
+  }
+
+  .error-messages__title {
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  .error-messages__list {
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--color-accent);
+  }
+
+  .error-messages__list li {
+    align-items: center;
+  }
+
+  .error-messages__list li .dot {
+    position: relative;
+    top: 2px;
+    left: -2px;
+    font-size: 22px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   /* タブレット横用レイアウト 1024px以上の範囲に収めるデザインはこの中に記述 */
   /*==========================================================
-        　　TB横__ログイン
+        　　TB横__ログイン・アカウント登録
   ==============================================================*/
   .auth-inner {
     top: 30%;
