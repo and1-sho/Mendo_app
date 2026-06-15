@@ -28,7 +28,15 @@ class StockReductionsController < ApplicationController
     end
 
     # 在庫を減らして保存する
-    @item.update!(stock: @item.stock - quantity)
+    previous_stock = @item.stock
+    @item.update!(stock: previous_stock - quantity)
+
+    # トリガー数以下になった瞬間にメールを送る
+    StockAlertNotifier.new(
+      item: @item,
+      previous_stock: previous_stock,
+      admin_user: current_user
+    ).call
 
     # 画面①に戻り「記録しました」を表示する
     redirect_to root_path, notice: "記録しました"
