@@ -28,7 +28,6 @@
     text-align: center;
     font-size: 136px;
     color: var(--color-accent);
-    /* margin-bottom: 88px; */
     margin: 36px 0 56px;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -109,8 +108,14 @@
   }
 
   .num-btn {
+    /* width: 160px;
+    height: 106px; */
+    /* aspect-ratio: 8 / 5; */
     width: 160px;
-    height: 106px;
+    height: 60px;
+    height: auto;
+
+    background-color: #ff8401;
   }
 
   .submit-btn__box {
