@@ -9,5 +9,6 @@
  *= require base
  *= require layout
  *= require components
+ *= require pages/auth
  *= require pages/item-code
  */

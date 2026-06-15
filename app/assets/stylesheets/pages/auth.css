@@ -1,0 +1,86 @@
+/* ログイン、新規登録、パスワード再設定など。 */
+@media screen and (min-width: 320px) {
+  /* タブレット縦用レイアウト 320px以上の範囲に収めるデザインはこの中に記述 */
+  /*==========================================================
+        　　TB縦__ログイン
+  ==============================================================*/
+  .auth-page {
+    width: 100vw;
+    height: 100svh;
+  }
+
+  .auth-inner {
+    width: 420px;
+    height: fit-content;
+    margin: 150px auto 0;
+    padding: 32px 28px;
+    border-radius: 16px;
+    border: 1px solid rgba(2, 27, 21, 0.12);
+    background: #fff;
+    box-shadow: 0 8px 32px rgba(2, 27, 21, 0.06);
+  }
+
+  .auth-title {
+    margin: 0 0 24px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .auth-form__field {
+    margin-bottom: 18px;
+    position: relative;
+  }
+
+  .auth-form__label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #021b15;
+  }
+
+  .auth-form__input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 1rem;
+    color: #021b15;
+    background: #fff;
+    border: 1px solid rgba(2, 27, 21, 0.2);
+    border-radius: 10px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .auth-form__input:focus {
+    outline: none;
+    border-color: #021b15;
+    box-shadow: 0 0 0 3px rgba(2, 27, 21, 0.12);
+  }
+
+  .login-btn {
+    background: var(--color-accent);
+    color: var(--color-white);
+    width: 100%;
+    height: 60px;
+    border-radius: 20px;
+    font-size: 24px;
+    letter-spacing: 0.6em;
+    font-weight: 900;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  /* タブレット横用レイアウト 1024px以上の範囲に収めるデザインはこの中に記述 */
+  /*==========================================================
+        　　TB横__ログイン
+  ==============================================================*/
+}
