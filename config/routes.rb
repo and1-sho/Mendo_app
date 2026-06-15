@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  # 開発環境で送信メールをブラウザ確認する（http://localhost:3000/letter_opener）
+  # gem が未インストールでも他のルートが読み込めるよう defined? で囲む
+  if Rails.env.development? && defined?(LetterOpenerWeb::Engine)
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+
   # ヘルスチェック用
   get "up" => "rails/health#show", as: :rails_health_check
 

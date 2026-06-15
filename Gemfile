@@ -55,6 +55,9 @@ end
 group :development do
   # エラー画面でブラウザからコンソールを使えるようにする
   gem "web-console"
+
+  # 開発環境で送信メールをブラウザで確認する（/letter_opener）
+  gem "letter_opener_web", "~> 3.0"
 end
 
 group :test do

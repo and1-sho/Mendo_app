@@ -1,0 +1,12 @@
+<p>オーナー様</p>
+
+<p>以下の備品を発注してください。</p>
+
+<ul>
+  <li>備品名：<%= @item.name %></li>
+  <li>商品番号：<%= @item.item_code %></li>
+  <li>現在の在庫数：<%= @item.stock %></li>
+  <li>注文トリガー数：<%= @item.order_trigger %></li>
+  <li>目標補充数：<%= @item.reorder_quantity %></li>
+  <li>今回の発注量：<%= @item.order_quantity %></li>
+</ul>
