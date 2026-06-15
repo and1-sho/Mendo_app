@@ -7,6 +7,11 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+    <!-- Googleフォント｜ Noto Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   </head>
 
   <body>
@@ -15,7 +20,7 @@
       <p id="flash-notice"><%= flash[:notice] %></p>
     <% end %>
     <% if flash[:alert] %>
-      <p id="flash-alert"><%= flash[:alert] %></p>
+      <p id="flash-alert" class="flash-message"><%= flash[:alert] %></p>
     <% end %>
 
     <%= yield %>
