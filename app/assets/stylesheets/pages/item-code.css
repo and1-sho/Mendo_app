@@ -3,17 +3,7 @@
   /*==========================================================
         　　TB縦__商品番号（入力）
   ==============================================================*/
-  .flash-message {
-    text-align: center;
-    padding: 40px 16px;
-    font-size: 20px;
-    background-color: var(--color-accent);
-    color: var(--color-white);
-    font-weight: 500;
-    letter-spacing: 0.08em;
-  }
-
-  .item-code {
+  .item-code-page {
     width: 100vw;
     height: 100svh;
     display: grid;
@@ -33,66 +23,18 @@
     color: #ff8401;
   }
 
-  .input-code {
-    text-align: center;
-    font-size: 136px;
-    color: var(--color-accent);
-    margin: 40px 0 56px;
-    /* margin: 44px 0 64px; */
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    padding-left: 16px;
-  }
-
-  .num-btn__box {
-    font-size: 64px;
-    font-weight: 600;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    width: fit-content;
-    margin: 0 auto;
-    gap: 22px;
-  }
-
-  .num-btn {
-    display: grid;
-    place-content: center;
-    aspect-ratio: 11 / 7;
-    width: 160px;
-    height: auto;
-    background-color: var(--color-white);
-    border-radius: 8px;
-    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
-  }
-
-  .empty {
-    visibility: hidden;
-  }
-
-  .num-btn__delete {
-    display: grid;
-    place-content: center;
-    transform: scale(0.94);
-  }
-
   .submit-btn__box {
     width: 524px;
     margin: 64px auto auto;
   }
 
-  .submit-btn {
-    background: var(--color-accent);
-    color: var(--color-white);
+  .item-code-page .submit-btn {
     width: 524px;
     height: 120px;
-    border-radius: 20px;
     font-size: 38px;
-    letter-spacing: 0.6em;
-    font-weight: 900;
-    text-align: center;
   }
 
-  .submit-btn span {
+  .item-code-page .submit-btn span {
     padding-right: 16px;
     padding-left: 40px;
   }
@@ -105,7 +47,7 @@
   /*==========================================================
         　　TB横__商品番号（入力）
   ==============================================================*/
-  .item-code {
+  .item-code-page {
     position: relative;
     padding: 0;
   }
@@ -139,7 +81,7 @@
     width: auto;
   }
 
-  .submit-btn {
+  .item-code-page .submit-btn {
     width: auto;
     height: auto;
     padding: 32px;
