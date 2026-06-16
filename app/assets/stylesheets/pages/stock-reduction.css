@@ -1,0 +1,193 @@
+@media screen and (min-width: 320px) {
+  /* タブレット縦用レイアウト 320px以上の範囲に収めるデザインはこの中に記述 */
+  /*==========================================================
+        　　TB縦__個数入力
+  ==============================================================*/
+  .stock-reduction-page {
+    padding: 40px 60px 180px;
+    position: relative;
+    min-height: 100svh;
+  }
+
+  .item-box {
+    position: relative;
+    width: 100%;
+    height: 284px;
+  }
+
+  .item-image {
+    width: 100%;
+    height: 284px;
+    overflow: hidden;
+    background: #E3E3E3;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+  }
+
+  .item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    position: relative;
+    top: -25%;
+    left: 0;
+  }
+
+  .item-image .no-img {
+    font-size: 30px;
+    letter-spacing: 0.2em;
+    opacity: 0.3;
+    font-weight: 600;
+  }
+
+  .stock-reduction-page .item-code {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    color: var(--color-accent);
+    border: solid 3px var(--color-accent);
+    background: var(--color-white);
+    border-radius: 14px;
+    min-width: 140px;
+    padding: 6px 16px;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+    z-index: 10;
+  }
+
+  .stock-reduction-page .input-code {
+    margin: 12px 0 22px;
+    padding-left: 4px;
+  }
+
+  .stock-reduction-page .num-btn__box {
+    transform: scale(0.95);
+  }
+
+  .stock-reduction-page .submit-btn {
+    position: absolute;
+    right: 60px;
+    bottom: 40px;
+    width: 41.3%;
+    height: 104px;
+    font-size: 34px;
+  }
+
+  .stock-reduction-page .back-btn {
+    position: absolute;
+    left: 60px;
+    bottom: 40px;
+    width: 41.3%;
+    height: 104px;
+    font-size: 34px;
+    letter-spacing: 0.6em;
+    font-weight: 900;
+    text-align: center;
+  }
+
+  .stock-reduction-page .back-btn a {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    display: grid;
+    place-items: center;
+    padding-right: 16px;
+    padding-left: 40px;
+    background: var(--color-white);
+    color: var(--color-accent);
+    border: solid 4px var(--color-accent);
+    border-radius: 20px;
+  }
+
+  .stock-reduction-page .submit-btn span,
+  .stock-reduction-page .back-btn span {
+    padding-right: 16px;
+    padding-left: 40px;
+  }
+
+  /*==========================================================
+        　　TB縦__画像のトリミング位置
+  ==============================================================*/
+  /* .item-code-商品番号 img */
+
+}
+
+
+
+
+@media screen and (min-width: 1024px) {
+  /* タブレット横用レイアウト 1024px以上の範囲に収めるデザインはこの中に記述 */
+  /*==========================================================
+        　　TB横__個数入力
+  ==============================================================*/
+  .stock-reduction-page {
+    /* padding: 32px 32px 32px 60px; */
+    padding: 4%;
+    display: grid;
+    place-items: center;
+  }
+
+  .stock-reduction__inner {
+    padding-left: 50%;
+    padding-top: 32px;
+    padding-bottom: 10px;
+    position: relative;
+    width: 100%;
+    max-width: 1060px;
+    margin: 0 0 0 auto;
+  }
+
+  .item-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 43vw;
+    max-width: 500px;
+    height: 400px;
+  }
+  .item-image {
+    width: 43vw;
+    max-width: 500px;
+    height: 400px;
+  }
+
+  .item-image img {
+    top: 0;
+  }
+
+  .stock-reduction-page .input-code {
+    margin: 0 0 80px;
+    padding-left: 4px;
+    font-size: 120px;
+  }
+
+  .stock-reduction-page .num-btn__box {
+    transform: scale(1);
+  }
+
+  .stock-reduction-page .num-btn {
+    aspect-ratio: 11 / 7.3;
+  }
+
+  .stock-reduction-page .submit-btn {
+    left: 0;
+    right: auto;
+    bottom: 124px;
+    width: 43vw;
+    max-width: 500px;
+    height: 104px;
+    font-size: 34px;
+  }
+
+  .stock-reduction-page .back-btn {
+    left: 0;
+    bottom: 0;
+    width: 43vw;
+    max-width: 500px;
+    height: 104px;
+    font-size: 34px;
+  }
+}

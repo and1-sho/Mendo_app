@@ -11,4 +11,5 @@
  *= require components
  *= require pages/auth
  *= require pages/item-code
+ *= require pages/stock-reduction
  */

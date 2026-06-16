@@ -1,46 +1,65 @@
-<%# 備品の画像・商品番号・備品名を表示 %>
-<p>商品番号: <%= @item.item_code %></p>
-<p>備品名: <%= @item.name %></p>
-<p>現在の在庫数: <%= @item.stock %></p>
+<div class="stock-reduction-page">
+  <div class="stock-reduction__inner">
+    <article class="item-box">
+      <%# 備品の画像・商品番号・備品名を表示 %>
+      <p class="item-code"><%= @item.item_code %></p>
+      <p class="mvp-none">備品名: <%= @item.name %></p>
+      <p class="mvp-none">現在の在庫数: <%= @item.stock %></p>
 
-<% if @item.image.attached? %>
-  <%= image_tag @item.image %>
-<% else %>
-  <p>画像なし</p>
-<% end %>
+      <div class="item-image item-code-<%= @item.item_code %>">
+        <% if @item.image.attached? %>
+          <%= image_tag @item.image %>
+        <% else %>
+          <p class="no-img">画像なし</p>
+        <% end %>
+      </div>
+    </article>
 
-<%# 個数入力エリア（デフォルトは1） %>
-<p id="display">1</p>
+    <%# 個数入力エリア（デフォルトは1） %>
+    <p class="input-code" id="display">1</p>
 
-<%# 決定ボタンを押すとフォームをサーバーに送信する %>
-<%= form_with url: stock_reductions_path, method: :post do |f| %>
-  <%# 備品のIDをサーバーに渡す %>
-  <%= f.hidden_field :item_id, value: @item.id %>
+    <%# 決定ボタンを押すとフォームをサーバーに送信する %>
+    <%= form_with url: stock_reductions_path, method: :post do |f| %>
+      <%# 備品のIDをサーバーに渡す %>
+      <%= f.hidden_field :item_id, value: @item.id %>
 
-  <%# JSで個数を入れる隠しフィールド（デフォルトは1） %>
-  <%= f.hidden_field :quantity, id: "quantity-input", value: "1" %>
+      <%# JSで個数を入れる隠しフィールド（デフォルトは1） %>
+      <%= f.hidden_field :quantity, id: "quantity-input", value: "1" %>
 
-  <%# テンキーのボタン配置 %>
-  <button type="button" onclick="addNumber('1')">1</button>
-  <button type="button" onclick="addNumber('2')">2</button>
-  <button type="button" onclick="addNumber('3')">3</button>
-  <button type="button" onclick="addNumber('4')">4</button>
-  <button type="button" onclick="addNumber('5')">5</button>
-  <button type="button" onclick="addNumber('6')">6</button>
-  <button type="button" onclick="addNumber('7')">7</button>
-  <button type="button" onclick="addNumber('8')">8</button>
-  <button type="button" onclick="addNumber('9')">9</button>
-  <button type="button" onclick="addNumber('0')">0</button>
+      <article class="num-btn__box">
+        <%# テンキーのボタン配置 %>
+        <button class="num-btn" type="button" onclick="addNumber('1')">1</button>
+        <button class="num-btn" type="button" onclick="addNumber('2')">2</button>
+        <button class="num-btn" type="button" onclick="addNumber('3')">3</button>
+        <button class="num-btn" type="button" onclick="addNumber('4')">4</button>
+        <button class="num-btn" type="button" onclick="addNumber('5')">5</button>
+        <button class="num-btn" type="button" onclick="addNumber('6')">6</button>
+        <button class="num-btn" type="button" onclick="addNumber('7')">7</button>
+        <button class="num-btn" type="button" onclick="addNumber('8')">8</button>
+        <button class="num-btn" type="button" onclick="addNumber('9')">9</button>
+        <div class="empty"></div>
+        <button class="num-btn" type="button" onclick="addNumber('0')">0</button>
 
-  <%# 1文字消すボタン %>
-  <button type="button" onclick="deleteNumber()">1文字消す</button>
+        <%# 1文字消すボタン %>
+        <button class="num-btn__delete" type="button" onclick="deleteNumber()">
+          <svg width="89" height="57" viewBox="0 0 89 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21.6367 2.5H86C86.2761 2.5 86.5 2.72386 86.5 3V54C86.5 54.2761 86.2761 54.5 86 54.5H21.5732C21.4135 54.5 21.263 54.424 21.1689 54.2949L3.26465 29.7344C3.14027 29.5638 3.13621 29.3328 3.25488 29.1582L21.2227 2.71875C21.3157 2.58186 21.4712 2.5 21.6367 2.5Z" fill="#7C7C7C" stroke="#7C7C7C" stroke-width="5"/>
+            <path d="M63 17L39 41" stroke="white" stroke-width="5"/>
+            <path d="M39 17L63 41" stroke="white" stroke-width="5"/>
+          </svg>
+        </button>
+      </article>
 
-  <%# 決定ボタン %>
-  <button type="submit">決定</button>
-<% end %>
+      <%# 決定ボタン %>
+      <button class="submit-btn" type="submit"><span>決定</span></button>
+    <% end %>
 
-<%# 戻るボタン（画面①へ） %>
-<%= link_to "戻る", root_path %>
+    <%# 戻るボタン（画面①へ） %>
+    <div class="back-btn">
+      <%= link_to "戻る", root_path %>
+    </div>
+  </div>
+</div>
 
 <script>
   function addNumber(num) {
