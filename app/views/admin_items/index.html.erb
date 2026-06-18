@@ -1,39 +1,67 @@
-<h1>備品一覧</h1>
+<div class="items-index-page">
+  <h1 class="page-title">備品一覧</h1>
 
-<%= link_to "トップに戻る", root_path %>
-<%= link_to "新規登録", new_admin_item_path %>
-<%= button_to "ログアウト", destroy_user_session_path, method: :delete %>
+  <div class="head-btn__box">
+    <div class="top-btn"><%= link_to "トップに戻る", root_path %></div>
+    <div class="logout-btn"><%= button_to "ログアウト", destroy_user_session_path, method: :delete %></div>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>商品番号</th>
-      <th>備品名</th>
-      <th>在庫数</th>
-      <th>注文トリガー数</th>
-      <th>目標補充数</th>
-      <th>画像</th>
-      <th>操作</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.item_code %></td>
-        <td><%= item.name %></td>
-        <td><%= item.stock %></td>
-        <td><%= item.order_trigger %></td>
-        <td><%= item.reorder_quantity %></td>
-        <td>
-          <% if item.image.attached? %>
-            <%= image_tag item.image, width: 60 %>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to "編集", edit_admin_item_path(item) %>
-          <%= button_to "削除", admin_item_path(item), method: :delete, data: { turbo_confirm: "削除してよいですか？" } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <%= link_to new_admin_item_path, class: "icon-button new-item-btn" do %>
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="32" fill="#FB8C00"/>
+      <path d="M22 32H42" stroke="white" stroke-width="3"/>
+      <path d="M32 42V22" stroke="white" stroke-width="3"/>
+    </svg>
+  <% end %>
+
+  <article  class="item-table-bg">
+    <table class="item-table">
+      <thead class="item-thead">
+        <tr class="item-bg">
+          <th>商品番号</th>
+          <th></th>
+          <th>備品名</th>
+          <th>在庫数</th>
+          <th>注文<br class="tb-none">トリガー数</th>
+          <th>目標補充数</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody class="item-box">
+        <% @items.each do |item| %>
+          <tr class="item-bg">
+            <td><%= item.item_code %></td>
+            <td class="item-box__image">
+              <% if item.image.attached? %>
+                <%= image_tag item.image, width: 60 %>
+              <% end %>
+            </td>
+            <td class="item-box__name"><%= item.name %></td>
+            <td><%= item.stock %></td>
+            <td><%= item.order_trigger %></td>
+            <td><%= item.reorder_quantity %></td>
+            
+            <td class="edit-btn-box">
+              <%= link_to edit_admin_item_path(item), class: "icon-button" do %>
+                <svg width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9.25 3.34766H2.75C1.64543 3.34766 0.75 4.24309 0.75 5.34766V21.8477C0.75 22.9522 1.64543 23.8477 2.75 23.8477H20.75C21.8546 23.8477 22.75 22.9522 22.75 21.8477V15.3477" stroke="#151515" stroke-width="1.5"/>
+                  <path d="M8.75 12.3477L12.25 16.3477M18.663 2.84766L20.5431 1.0308C20.9354 0.651634 21.5593 0.656966 21.9451 1.04278L24.0429 3.14055C24.4334 3.53107 24.4334 4.16424 24.0429 4.55476L22.0403 6.55738L12.25 16.3477L7.25 17.3477L8 14.8477L8.75 12.3477L18.663 2.84766ZM22.0403 6.55738L18.663 2.84766" stroke="#151515" stroke-width="1.5"/>
+                </svg>
+              <% end %>
+
+              <%= button_to admin_item_path(item), method: :delete,
+              data: { turbo_confirm: "削除してよいですか？" }, class: "icon-button" do %>
+                <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 3.75H8V2.75C8 1.64543 8.89543 0.75 10 0.75H13C14.1046 0.75 15 1.64543 15 2.75V3.75H23.5" stroke="#151515" stroke-width="1.5"/>
+                  <path d="M2 5.75L3.80232 21.9709C3.91486 22.9837 4.77099 23.75 5.79009 23.75H17.2586C18.2568 23.75 19.1022 23.0139 19.2396 22.0251L21.5 5.75" stroke="#151515" stroke-width="1.5"/>
+                  <path d="M8.5 10.25L15 16.75" stroke="#151515" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M8.5 16.75L15 10.25" stroke="#151515" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </article>
+</div>
