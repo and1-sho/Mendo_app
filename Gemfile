@@ -44,6 +44,9 @@ gem "devise-i18n"
 # Rails 標準メッセージ（エラーなど）の日本語訳
 gem "rails-i18n", "~> 7.0.10"
 
+# ページネーション
+gem "kaminari"
+
 # .env ファイルから環境変数を読み込む（APIキーなど秘密情報の管理に使う）
 gem "dotenv-rails", "~> 3.2"
 

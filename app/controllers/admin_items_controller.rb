@@ -4,7 +4,7 @@ class AdminItemsController < ApplicationController
 
   # 一覧画面
   def index
-    @items = Item.order(:item_code)
+    @items = Item.order(:item_code).page(params[:page]).per(20)
   end
 
   # 詳細画面
