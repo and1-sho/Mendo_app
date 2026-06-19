@@ -1,5 +1,7 @@
-<h1>備品を登録する</h1>
+<div class="items-new-page">
+  <h1 class="page-title">備品登録</h1>
 
-<%= render "form", item: @item %>
+  <%= render "form", item: @item %>
 
-<%= link_to "一覧に戻る", admin_items_path %>
+  <%= link_to "一覧に戻る", admin_items_path, class: "back-btn items-new-btn" %>
+</div>
