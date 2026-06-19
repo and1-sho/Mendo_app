@@ -12,40 +12,75 @@
     </ul>
   <% end %>
 
-  <div>
-    <%= f.label :item_code, "商品番号" %>
-    <%= f.number_field :item_code %>
+  <div class="auth-form__field form-num">
+    <%= f.label :item_code, "商品番号", class: "auth-form__label" %>
+    <%= f.number_field :item_code, class: "auth-form__input" %>
   </div>
 
-  <div>
-    <%= f.label :name, "備品名" %>
-    <%= f.text_field :name %>
+  <div class="auth-form__field">
+    <%= f.label :name, "備品名", class: "auth-form__label" %>
+    <%= f.text_field :name, class: "auth-form__input" %>
   </div>
 
-  <div>
-    <%= f.label :stock, "在庫数" %>
-    <%= f.number_field :stock %>
+  <div class="form-num__box">
+    <div class="auth-form__field form-num">
+      <%= f.label :stock, "在庫数", class: "auth-form__label" %>
+      <%= f.number_field :stock, class: "auth-form__input" %>
+    </div>
+
+    <div class="auth-form__field form-num">
+      <%= f.label :order_trigger, "注文トリガー数", class: "auth-form__label" %>
+      <%= f.number_field :order_trigger, class: "auth-form__input" %>
+    </div>
+
+    <div class="auth-form__field form-num">
+      <%= f.label :reorder_quantity, "目標補充数", class: "auth-form__label" %>
+      <%= f.number_field :reorder_quantity, class: "auth-form__input" %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :order_trigger, "注文トリガー数" %>
-    <%= f.number_field :order_trigger %>
+  <div class="auth-form__field form__field-image">
+    <%= f.label :image, "画像", class: "auth-form__label" %>
+
+    <%= f.file_field :image,
+        id: "item-image",
+        accept: "image/*",
+        class: "image-input",
+        onchange: "previewImage(event)" %>
+
+    <div class="item-image__box">
+      <label for="item-image" class="image-upload">
+        <div class="image-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="request-new__video-drop-svg" width="33" height="33">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z" />
+          </svg>
+        </div>
+        <p class="image-text">タップで画像を追加する</p>
+        <span class="image-label">＋ 画像を選択</span>
+      </label>
+
+      <div class="image-preview">
+        <% if item.image.attached? %>
+          <%= image_tag item.image, id: "preview", class: "preview-image" %>
+        <% else %>
+          <img id="preview" class="preview-image" style="display: none;">
+        <% end %>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :reorder_quantity, "目標補充数" %>
-    <%= f.number_field :reorder_quantity %>
-  </div>
-
-  <div>
-    <%= f.label :image, "画像" %>
-    <%= f.file_field :image, accept: "image/*" %>
-    <%# 編集時：すでに画像が登録されていれば表示する %>
-    <% if item.image.attached? %>
-      <%= image_tag item.image, width: 100 %>
-    <% end %>
-  </div>
-
-  <%= f.submit %>
+  <%= f.submit "登録する", class: "submit-btn items-new-btn" %>
 
 <% end %>
+
+<script>
+  function previewImage(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const preview = document.getElementById("preview");
+
+    preview.src = URL.createObjectURL(file);
+    preview.style.display = "block";
+  }
+</script>

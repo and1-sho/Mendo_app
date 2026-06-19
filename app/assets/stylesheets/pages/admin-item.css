@@ -167,6 +167,139 @@
     width: auto;
   }
 
+  /*==========================================================
+        　　TB縦__新規登録
+  ==============================================================*/
+  .items-new-page {
+    position: relative;
+    min-height: 100svh;
+    width: 568px;
+    margin: 0 auto;
+  }
+
+  .items-new-page .page-title {
+    padding: 80px 0 68px;
+  }
+
+  .items-new-page form {
+    position: relative;
+    padding-bottom: 68px;
+  }
+
+  .items-new-page .auth-form__field {
+    margin-bottom: 24px;
+  }
+
+  .items-new-page .auth-form__label {
+    letter-spacing: 0.04em;
+  }
+
+  .image-input {
+    display: none;
+  }
+
+  .items-new-page .auth-form__input {
+    height: 42px;
+  }
+
+  .form-num__box {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+  }
+
+  .auth-form__field.form-num {
+    width: 265px;
+  }
+
+  .form-num .auth-form__input {
+    letter-spacing: 0.2em;
+  }
+
+  .image-upload {
+    width: 100%;
+    min-height: 146px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: 2px dashed #d9d9d9;
+    border-radius: 12px;
+    background: #fafafa;
+  }
+
+  .image-text {
+    margin: 0;
+    color: #818181;
+    letter-spacing: 0.06em;
+    margin-bottom: 3px;
+    font-size: 15px;
+  }
+
+  .image-icon {
+    color: #A7A7A7;
+  }
+
+  .image-upload .image-label {
+    background: #A7A7A7;
+    font-weight: 600;
+    padding: 8px 24px 8px 18px;
+    border-radius: 8px;
+    color: var(--color-white);
+    letter-spacing: 0.08em;
+    font-size: 13px;
+  }
+
+  .image-preview {
+    margin-top: 20px;
+  }
+
+  .auth-form__field.form__field-image {
+    margin-bottom: 40px;
+  }
+
+  .preview-image {
+    width: 400px;
+    height: 250px;
+    display: block;
+    overflow: hidden;
+    object-fit: cover;
+    border: solid 1px #c7c7c7;
+    margin: 0 auto;
+  }
+
+  .preview-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .items-new-btn {
+    width: 270px;
+    height: 68px;
+    border-radius: 8px;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+  }
+
+  .items-new-btn.submit-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  .items-new-btn.back-btn {
+    border: solid 2px var(--color-accent);
+    text-align: center;
+    display: grid;
+    place-items: center;
+    color: var(--color-accent);
+    font-weight: 600;
+    position: relative;
+    top: -68px;
+  }
+
 }
 
 @media screen and (min-width: 1024px) {
@@ -202,5 +335,52 @@
 
   .items-index-page .item-box {
     width: 946px;
+  }
+
+  /*==========================================================
+        　　TB横__新規登録
+  ==============================================================*/
+  .items-new-page {
+    width: 648px;
+  }
+
+  .items-new-page .page-title {
+    padding: 64px 0 64px;
+  }
+
+  .form-num__box {
+    grid-template-columns: auto auto auto;
+  }
+
+  .auth-form__field.form-num {
+    width: 200px;
+  }
+
+  .item-image__box {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+  }
+
+  .image-upload {
+    width: 308px;
+    min-height: 190px;
+  }
+
+  .image-text {
+    margin-bottom: 5px;
+  }
+
+  .image-preview {
+    margin-top: 0;
+  }
+
+  .preview-image {
+    width: 308px;
+    height: 190px;
+  }
+
+  .items-new-btn {
+    width: 308px;
   }
 }
