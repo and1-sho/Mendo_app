@@ -131,7 +131,6 @@
   .pagination {
     display: flex;
     justify-content: center;
-    /* margin-top: 16px; */
     padding-bottom: 48px;
   }
 
@@ -168,29 +167,29 @@
   }
 
   /*==========================================================
-        　　TB縦__新規登録
+        　　TB縦__新規登録・備品編集
   ==============================================================*/
-  .items-new-page {
+  .items-form-page {
     position: relative;
     min-height: 100svh;
     width: 568px;
     margin: 0 auto;
   }
 
-  .items-new-page .page-title {
+  .items-form-page .page-title {
     padding: 80px 0 68px;
   }
 
-  .items-new-page form {
+  .items-form-page form {
     position: relative;
     padding-bottom: 68px;
   }
 
-  .items-new-page .auth-form__field {
+  .items-form-page .auth-form__field {
     margin-bottom: 24px;
   }
 
-  .items-new-page .auth-form__label {
+  .items-form-page .auth-form__label {
     letter-spacing: 0.04em;
   }
 
@@ -198,7 +197,7 @@
     display: none;
   }
 
-  .items-new-page .auth-form__input {
+  .items-form-page .auth-form__input {
     height: 42px;
   }
 
@@ -275,7 +274,7 @@
     object-fit: cover;
   }
 
-  .items-new-btn {
+  .items-form-btn {
     width: 270px;
     height: 68px;
     border-radius: 8px;
@@ -283,13 +282,13 @@
     letter-spacing: 0.1em;
   }
 
-  .items-new-btn.submit-btn {
+  .items-form-btn.submit-btn {
     position: absolute;
     bottom: 0;
     right: 0;
   }
 
-  .items-new-btn.back-btn {
+  .items-form-btn.back-btn {
     border: solid 2px var(--color-accent);
     text-align: center;
     display: grid;
@@ -340,11 +339,11 @@
   /*==========================================================
         　　TB横__新規登録
   ==============================================================*/
-  .items-new-page {
+  .items-form-page {
     width: 648px;
   }
 
-  .items-new-page .page-title {
+  .items-form-page .page-title {
     padding: 64px 0 64px;
   }
 
@@ -380,7 +379,7 @@
     height: 190px;
   }
 
-  .items-new-btn {
+  .items-form-btn {
     width: 308px;
   }
 }
