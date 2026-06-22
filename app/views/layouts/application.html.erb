@@ -17,10 +17,10 @@
   <body>
     <%# フラッシュメッセージ（数秒後に自動で消える） %>
     <% if flash[:notice] %>
-      <p id="flash-notice"><%= flash[:notice] %></p>
+      <p id="flash-notice" class="flash-message success"><%= flash[:notice] %></p>
     <% end %>
     <% if flash[:alert] %>
-      <p id="flash-alert" class="flash-message"><%= flash[:alert] %></p>
+      <p id="flash-alert" class="flash-message error"><%= flash[:alert] %></p>
     <% end %>
 
     <%= yield %>
