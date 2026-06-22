@@ -3,6 +3,8 @@
   --color-black: #000000;
   --color-white: #ffffff;
   --color-accent: #FB8C00;
+  --color-success: #2acf48;
+  --color-error: #ff4c29;
 }
 
 html,

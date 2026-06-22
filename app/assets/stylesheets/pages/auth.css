@@ -106,7 +106,6 @@
 
   .signup-btn {
     margin-top: 8px;
-    margin-bottom: -4px;
   }
 
   .auth-link {
@@ -114,7 +113,8 @@
     text-align: center;
   }
 
-  .auth-link__signup {
+  .auth-link__signup,
+  .auth-link__login {
     font-size: 14px;
     font-weight: 600;
     text-decoration: underline;
@@ -123,10 +123,15 @@
 
   /*=========== アカウント登録（未入力エラー） ===========*/
   .error-messages {
-    border: solid 1.5px var(--color-accent);
+    border: solid 1.5px var(--color-error);
     border-radius: 10px;
     margin-bottom: 28px;
     padding: 16px;
+  }
+
+  .items-form-page .error-messages {
+    position: relative;
+    top: -16px;
   }
 
   .error-messages__title {
@@ -134,13 +139,13 @@
     line-height: 1.7;
     margin-bottom: 8px;
     font-weight: 600;
-    color: var(--color-accent);
+    color: var(--color-error);
   }
 
   .error-messages__list {
     font-size: 15px;
     line-height: 1.4;
-    color: var(--color-accent);
+    color: var(--color-error);
   }
 
   .error-messages__list li {

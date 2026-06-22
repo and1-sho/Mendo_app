@@ -12,11 +12,11 @@
 }
 
 .flash-message.success {
-  background-color: #2acf48;
+  background-color: var(--color-success);
 }
 
 .flash-message.error {
-  background-color: #ff4c29;
+  background-color: var(--color-error);
 }
 
 /*=========== テンキー ===========*/

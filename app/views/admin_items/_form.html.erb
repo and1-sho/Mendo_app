@@ -5,9 +5,9 @@
 
   <%# バリデーションエラーがある場合に表示 %>
   <% if item.errors.any? %>
-    <ul>
+    <ul class="error-messages error-messages__list">
       <% item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <li><span class="dot">・</span><%= message %></li>
       <% end %>
     </ul>
   <% end %>
