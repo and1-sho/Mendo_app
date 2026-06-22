@@ -11,6 +11,14 @@
   letter-spacing: 0.08em;
 }
 
+.flash-message.success {
+  background-color: #2acf48;
+}
+
+.flash-message.error {
+  background-color: #ff4c29;
+}
+
 /*=========== テンキー ===========*/
 .input-code {
   text-align: center;
