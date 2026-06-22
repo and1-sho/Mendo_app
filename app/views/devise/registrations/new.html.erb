@@ -22,5 +22,9 @@
 
       <%= f.submit "登録する", class: "signup-btn" %>
     <% end %>
+
+    <div class="auth-link">
+      <%= link_to "ログインはこちら", new_user_session_path, class: "auth-link__login" %>
+    </div>
   </div>
 </div>
