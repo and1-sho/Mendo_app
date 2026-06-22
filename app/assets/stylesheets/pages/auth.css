@@ -123,7 +123,7 @@
 
   /*=========== アカウント登録（未入力エラー） ===========*/
   .error-messages {
-    border: solid 1.5px var(--color-accent);
+    border: solid 1.5px var(--color-error);
     border-radius: 10px;
     margin-bottom: 28px;
     padding: 16px;
@@ -134,13 +134,13 @@
     line-height: 1.7;
     margin-bottom: 8px;
     font-weight: 600;
-    color: var(--color-accent);
+    color: var(--color-error);
   }
 
   .error-messages__list {
     font-size: 15px;
     line-height: 1.4;
-    color: var(--color-accent);
+    color: var(--color-error);
   }
 
   .error-messages__list li {
