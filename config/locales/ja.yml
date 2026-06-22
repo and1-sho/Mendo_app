@@ -21,3 +21,16 @@ ja:
     sign_in: "ログイン"
     sign_out: "ログアウト"
     sign_up: "新規登録"
+
+  # --- モデル名・カラム名（バリデーションエラーの日本語化） ---
+  activerecord:
+    models:
+      item: 備品
+    attributes:
+      item:
+        item_code: 商品番号
+        name: 備品名
+        stock: 在庫数
+        order_trigger: 注文トリガー数
+        reorder_quantity: 目標補充数
+        image: 画像
