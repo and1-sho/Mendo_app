@@ -1,5 +1,7 @@
-<h1>備品を編集する</h1>
+<div class="items-edit-page items-form-page">
+  <h1 class="page-title">備品編集</h1>
 
-<%= render "form", item: @item %>
+  <%= render "form", item: @item %>
 
-<%= link_to "一覧に戻る", admin_items_path %>
+  <%= link_to "一覧に戻る", admin_items_path, class: "back-btn items-form-btn" %>
+</div>
