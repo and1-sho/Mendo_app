@@ -106,7 +106,6 @@
 
   .signup-btn {
     margin-top: 8px;
-    margin-bottom: -4px;
   }
 
   .auth-link {
@@ -114,7 +113,8 @@
     text-align: center;
   }
 
-  .auth-link__signup {
+  .auth-link__signup,
+  .auth-link__login {
     font-size: 14px;
     font-weight: 600;
     text-decoration: underline;
@@ -127,6 +127,11 @@
     border-radius: 10px;
     margin-bottom: 28px;
     padding: 16px;
+  }
+
+  .items-form-page .error-messages {
+    position: relative;
+    top: -16px;
   }
 
   .error-messages__title {
