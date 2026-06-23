@@ -70,3 +70,21 @@
   font-weight: 900;
   text-align: center;
 }
+
+/*=========== ボタン（アニメーション） ===========*/
+/* .js-button {
+  transition: transform 0.1s ease;
+}
+
+.js-button.is-pressed {
+  transform: scale(0.4);
+  background: red !important;
+} */
+
+.js-button {
+  transition: transform 0.1s ease;
+}
+
+.js-button:active {
+  transform: scale(0.95);
+}

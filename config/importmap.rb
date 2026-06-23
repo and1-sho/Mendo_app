@@ -2,3 +2,4 @@
 
 pin "application", preload: true
 pin "flash", preload: true
+pin "button_effect", preload: true
