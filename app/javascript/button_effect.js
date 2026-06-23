@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(".js-button");
-  const clickSound = new Audio("/assets/click.mp3");
 
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
-      clickSound.currentTime = 0;
-      clickSound.play();
+      // data-sound がなければ click を使う
+      const soundName = button.dataset.sound || "click";
+
+      const sound = new Audio(`/assets/${soundName}.mp3`);
+      sound.play();
     });
   });
 });
