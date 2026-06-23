@@ -109,8 +109,13 @@
   }
 
   .auth-link {
-    margin: 24px 0 0;
+    margin: 24px auto 0;
     text-align: center;
+    width: fit-content;
+  }
+
+  .auth-link a {
+    display: inline-block;
   }
 
   .auth-link__signup,

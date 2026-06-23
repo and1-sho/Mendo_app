@@ -70,3 +70,27 @@
   font-weight: 900;
   text-align: center;
 }
+
+/*=========== ボタン（アニメーション） ===========*/
+.js-button {
+  transition: transform 0.1s ease;
+}
+
+.js-button:active {
+  transform: scale(0.95);
+}
+
+/* １文字削除ボタン */
+.num-btn__delete:active {
+  transform: scale(0.89);
+}
+
+@media screen and (min-width: 1024px) {
+  /* タブレット横用レイアウト 1024px以上の範囲に収めるデザインはこの中に記述 */
+
+  /*=========== ボタン（アニメーション） ===========*/
+  /* １文字削除ボタン */
+  .num-btn__delete:active {
+    transform: scale(0.75);
+  }
+}
