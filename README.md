@@ -13,6 +13,7 @@
 | データベース | SQLite（開発環境） |
 | フロントエンド | Hotwire（Turbo + Stimulus）、importmap |
 | CSS | 自前のSCSS |
+| JavaScript | `app/javascript/`（importmap で管理） |
 | 開発環境 | Docker |
 
 ---
