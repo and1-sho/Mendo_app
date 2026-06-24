@@ -7,13 +7,20 @@ document.addEventListener("DOMContentLoaded", () => {
     confirm: new Audio("/assets/confirm.mp3"),
   };
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const soundName = button.dataset.sound || "click";
-      const sound = sounds[soundName];
+  // 最初に読み込む
+  Object.values(sounds).forEach((sound) => {
+    sound.preload = "auto";
+    sound.load();
+  });
 
-      sound.currentTime = 0;
-      sound.play();
+  buttons.forEach((button) => {
+    button.addEventListener("pointerdown", () => {
+      const soundName = button.dataset.sound || "click";
+
+      // 元の音をコピーして再生
+      const sound = sounds[soundName].cloneNode();
+
+      sound.play().catch(() => {});
     });
   });
 });
