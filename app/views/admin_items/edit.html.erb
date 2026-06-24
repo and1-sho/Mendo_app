@@ -3,5 +3,6 @@
 
   <%= render "form", item: @item %>
 
-  <%= link_to "一覧に戻る", admin_items_path, class: "back-btn items-form-btn js-button" %>
+  <%= link_to "一覧に戻る", admin_items_path, class: "back-btn items-form-btn js-button",
+      data: { sound: "delete" } %>
 </div>
