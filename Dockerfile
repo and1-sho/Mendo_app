@@ -18,12 +18,14 @@ ENV RAILS_ENV="production" \
 FROM base as build
 
 # Install packages needed to build gems
+# libyaml-dev : Psych gem のビルドに必要（これがないと bundle install が落ちる）
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
       build-essential \
       git \
       libpq-dev \
       libvips \
+      libyaml-dev \
       pkg-config && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
