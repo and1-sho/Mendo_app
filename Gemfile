@@ -8,8 +8,9 @@ gem "rails", "~> 7.1.6"
 # アセットパイプライン（CSS・JS ファイルをまとめる仕組み）
 gem "sprockets-rails"
 
-# 開発・本番ともに SQLite を使う
-gem "sqlite3", ">= 1.4"
+# 開発・テストは SQLite、本番は PostgreSQL（Supabase）を使う
+gem "sqlite3", ">= 1.4", group: [:development, :test]
+gem "pg", "~> 1.5", group: :production
 
 # Webサーバー
 gem "puma", ">= 5.0"
