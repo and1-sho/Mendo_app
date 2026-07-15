@@ -33,7 +33,7 @@
           <tr class="item-bg">
             <td><%= item.item_code %></td>
             <td class="item-box__image">
-              <% if item.image.attached? && item.image.blob.service.exist?(item.image.key) %>
+              <% if item.image_displayable? %>
                 <%= image_tag item.image, width: 60 %>
               <% end %>
             </td>
@@ -50,8 +50,11 @@
                 </svg>
               <% end %>
 
-              <%= button_to admin_item_path(item), method: :delete,
-              data: { turbo_confirm: "削除してよいですか？", sound: "delete" }, class: "icon-button js-button" do %>
+              <%= button_to admin_item_path(item),
+                    method: :delete,
+                    form: { data: { turbo_confirm: "削除してよいですか？" } },
+                    data: { sound: "delete" },
+                    class: "icon-button js-button" do %>
                 <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M0 3.75H8V2.75C8 1.64543 8.89543 0.75 10 0.75H13C14.1046 0.75 15 1.64543 15 2.75V3.75H23.5" stroke="#151515" stroke-width="1.5"/>
                   <path d="M2 5.75L3.80232 21.9709C3.91486 22.9837 4.77099 23.75 5.79009 23.75H17.2586C18.2568 23.75 19.1022 23.0139 19.2396 22.0251L21.5 5.75" stroke="#151515" stroke-width="1.5"/>

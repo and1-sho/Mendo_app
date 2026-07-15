@@ -1,14 +1,10 @@
 class AdminItemsController < ApplicationController
   # 編集・更新・削除のアクションで事前に備品を取得しておく
-  before_action :set_item, only: %i[show edit update destroy]
+  before_action :set_item, only: %i[edit update destroy]
 
   # 一覧画面
   def index
     @items = Item.order(:item_code).page(params[:page]).per(20)
-  end
-
-  # 詳細画面
-  def show
   end
 
   # 登録画面（フォームを表示）
@@ -33,16 +29,17 @@ class AdminItemsController < ApplicationController
   # 更新処理
   def update
     if @item.update(item_params)
-      redirect_to admin_items_path, notice: t("flash.updated", model: "備品")
+      redirect_to admin_items_path, notice: t("flash.updated", model: "備品"), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   # 削除処理
+  # status: :see_other … DELETE のあとブラウザが同じ DELETE でリダイレクトしてしまうのを防ぐ
   def destroy
     @item.destroy
-    redirect_to admin_items_path, notice: t("flash.destroyed", model: "備品")
+    redirect_to admin_items_path, notice: t("flash.destroyed", model: "備品"), status: :see_other
   end
 
   private
