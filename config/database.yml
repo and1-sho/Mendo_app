@@ -21,6 +21,9 @@ production:
   <<: *default
   adapter: postgresql
   encoding: unicode
-  # Supabase の Connection string（URI）をそのまま使う
+  # Supabase Transaction pooler（port 6543）では prepared statement が使えない
+  prepared_statements: false
+  # 同上。マイグレーションの advisory lock も pooler では無効化する
+  advisory_locks: false
   # 例: postgresql://postgres.xxxx:PASSWORD@aws-0-ap-northeast-1.pooler.supabase.com:6543/postgres
   url: <%= ENV["DATABASE_URL"] %>
