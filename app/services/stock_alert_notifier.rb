@@ -9,9 +9,15 @@ class StockAlertNotifier
   def call
     return unless threshold_crossed?
 
-    StockAlertMailer.admin_alert(@item, @admin_user).deliver_now
-    send_owner_mail if owner_email.present?
+    # メール失敗で在庫記録全体を落とさない（本番で SMTP 未設定のときなど）
+    begin
+      StockAlertMailer.admin_alert(@item, @admin_user).deliver_now
+      send_owner_mail if owner_email.present?
+    rescue StandardError => e
+      Rails.logger.error("[StockAlertNotifier] mail failed: #{e.class}: #{e.message}")
+    end
   end
+
 
   private
 

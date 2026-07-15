@@ -33,7 +33,7 @@
           <tr class="item-bg">
             <td><%= item.item_code %></td>
             <td class="item-box__image">
-              <% if item.image.attached? %>
+              <% if item.image.attached? && item.image.blob.service.exist?(item.image.key) %>
                 <%= image_tag item.image, width: 60 %>
               <% end %>
             </td>
