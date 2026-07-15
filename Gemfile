@@ -71,3 +71,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# Supabase Storage（S3 互換）に画像を保存するために使う
+gem "aws-sdk-s3", "~> 1.227", require: false
