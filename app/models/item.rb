@@ -40,4 +40,13 @@ class Item < ApplicationRecord
   def needs_order?
     stock <= order_trigger
   end
+
+  # 表示可能な画像があるか（実ファイル欠落時に 404 を出さない）
+  def image_displayable?
+    return false unless image.attached?
+
+    image.blob.service.exist?(image.key)
+  rescue StandardError
+    false
+  end
 end

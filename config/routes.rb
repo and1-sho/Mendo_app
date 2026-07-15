@@ -20,5 +20,6 @@ Rails.application.routes.draw do
   resources :stock_reductions, only: %i[new create]
 
   # 管理画面（備品の一覧・登録・編集・削除）
-  resources :admin_items, path: "admin/items"
+  # show は未使用。残すと削除失敗時などに GET /admin/items/:id で 404 になりやすい
+  resources :admin_items, path: "admin/items", except: %i[show]
 end

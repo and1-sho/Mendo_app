@@ -7,8 +7,7 @@
       <p class="mvp-none">現在の在庫数: <%= @item.stock %></p>
 
       <div class="item-image item-code-<%= @item.item_code %>">
-        <%# Render では画像ファイルが消えていることがある（ローカル保存のため） %>
-        <% if @item.image.attached? && @item.image.blob.service.exist?(@item.image.key) %>
+        <% if @item.image_displayable? %>
           <%= image_tag @item.image %>
         <% else %>
           <p class="no-img">画像なし</p>

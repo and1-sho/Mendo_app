@@ -61,7 +61,7 @@
 
       <div class="image-preview">
         <%# 保存済みの備品だけ image_tag を使う（未保存だと signed_id エラーになる） %>
-        <% if item.persisted? && item.image.attached? && item.image.blob.service.exist?(item.image.key) %>
+        <% if item.persisted? && item.image_displayable? %>
           <%= image_tag item.image, id: "preview", class: "preview-image" %>
         <% else %>
           <img id="preview" class="preview-image" style="display: none;">
