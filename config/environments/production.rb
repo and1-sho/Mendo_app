@@ -37,9 +37,8 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
-  # Store uploaded files on the local file system (see config/storage.yml for options).
-  # 注意: Render の無料枠では再デプロイで消えることがある（本番本格運用時は S3 等へ）
-  config.active_storage.service = :local
+  # Supabase Storage（S3 互換）に画像を保存する（再デプロイでも消えない）
+  config.active_storage.service = :supabase
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
