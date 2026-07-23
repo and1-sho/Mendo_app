@@ -1,22 +1,24 @@
 class StockAlertMailer < ApplicationMailer
-  # 施設管理者（admin）向け：在庫が少なくなったことを知らせる
-  def admin_alert(item, admin_user)
+  # 施設の管理者向け：発注を促す
+  def order_request(item, facility_admin)
     @item = item
-    @admin_user = admin_user
+    @facility_admin = facility_admin
 
     mail(
-      to: admin_user.email,
-      subject: "【在庫アラート】#{item.name} の在庫が少なくなりました"
+      to: facility_admin.email,
+      subject: "【mendo発注依頼】#{item.name}の在庫が不足しています"
     )
   end
 
-  # オーナー（システム作成者）向け：発注を依頼する
-  def owner_order_request(item, to:)
+  # システム管理者向け：アラート発生の報告（ログ・実績用）
+  def alert_report(item, facility_admin:, to:)
     @item = item
+    @facility_admin = facility_admin
+    @facility_name = facility_admin.email
 
     mail(
       to: to,
-      subject: "【発注依頼】#{item.name} を #{item.order_quantity} 個注文してください"
+      subject: "【mendoログ】#{@facility_name}施設にて在庫アラートが発生しました"
     )
   end
 end
