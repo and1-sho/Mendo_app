@@ -2,6 +2,8 @@ class Item < ApplicationRecord
   # 画像を1枚だけ添付できるようにする（Active Storage を使用）
   has_one_attached :image
 
+  has_many :stock_histories, dependent: :restrict_with_exception
+
   # --- バリデーション ---
 
   # 商品番号：必須・数値・重複禁止
