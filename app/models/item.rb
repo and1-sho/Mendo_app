@@ -15,6 +15,13 @@ class Item < ApplicationRecord
   # 備品名：必須
   validates :name, presence: true
 
+  # バーコード：商品に付いているコード（未登録も可・登録時は重複禁止）
+  validates :barcode,
+            uniqueness: true,
+            allow_nil: true
+
+  before_validation :normalize_barcode
+
   # 在庫数：必須・0以上の整数
   validates :stock,
             presence: true,
@@ -50,5 +57,12 @@ class Item < ApplicationRecord
     image.blob.service.exist?(image.key)
   rescue StandardError
     false
+  end
+
+  private
+
+  # 空文字は nil にしてユニーク制約と衝突しないようにする
+  def normalize_barcode
+    self.barcode = barcode.presence
   end
 end
