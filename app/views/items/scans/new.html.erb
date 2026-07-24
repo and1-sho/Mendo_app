@@ -1,0 +1,57 @@
+<%# バーコードスキャン画面（見た目・カメラはスタッフ担当。クラスは付けない） %>
+
+<h1>バーコードスキャン</h1>
+
+<p>カメラUIはここに実装してください。今は動作確認用の手入力です。</p>
+
+<video id="barcode-camera" autoplay playsinline muted></video>
+
+<p>
+  <a href="<%= root_path %>">手入力する</a>
+</p>
+
+<form id="scan-form" action="<%= items_scan_path %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="staff_id" id="staff-id-field" value="">
+
+  <label>
+    バーコード（確認用）
+    <input type="text" name="barcode" id="barcode-input" autocomplete="off">
+  </label>
+
+  <button type="submit">スキャンする</button>
+</form>
+
+<p id="scan-message"></p>
+
+<script>
+  // localStorage の staff_id をフォームへ入れる（名前登録機能と後で接続）
+  (function () {
+    var staffId = localStorage.getItem("staff_id");
+    var field = document.getElementById("staff-id-field");
+    if (field && staffId) {
+      field.value = staffId;
+    }
+
+    // fetch で JSON API も叩けるようにする（カメラ実装時に利用）
+    window.mendoScanBarcode = function (barcode) {
+      var tokenMeta = document.querySelector('meta[name="csrf-token"]');
+      var token = tokenMeta ? tokenMeta.getAttribute("content") : "";
+      var sid = localStorage.getItem("staff_id");
+
+      return fetch("<%= items_scan_path %>", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "X-CSRF-Token": token
+        },
+        body: JSON.stringify({ barcode: barcode, staff_id: sid })
+      }).then(function (res) {
+        return res.json().then(function (data) {
+          return { ok: res.ok, data: data };
+        });
+      });
+    };
+  })();
+</script>

@@ -19,6 +19,10 @@ Rails.application.routes.draw do
   # 画面②：在庫を減らす（個数入力 + 確定）
   resources :stock_reductions, only: %i[new create]
 
+  # バーコードスキャン（カメラ画面 + API）
+  get "scan", to: "items/scans#new", as: :scan
+  post "items/scan", to: "items/scans#create", as: :items_scan
+
   # 管理画面（備品の一覧・登録・編集・削除）
   # show は未使用。残すと削除失敗時などに GET /admin/items/:id で 404 になりやすい
   resources :admin_items, path: "admin/items", except: %i[show]

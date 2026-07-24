@@ -53,6 +53,7 @@ class AdminItemsController < ApplicationController
   def item_params
     params.require(:item).permit(
       :item_code,
+      :barcode,
       :name,
       :stock,
       :order_trigger,

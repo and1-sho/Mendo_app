@@ -29,6 +29,7 @@ ja:
     attributes:
       item:
         item_code: 商品番号
+        barcode: バーコード
         name: 備品名
         stock: 在庫数
         order_trigger: 注文トリガー数
