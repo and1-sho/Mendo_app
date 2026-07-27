@@ -6,6 +6,6 @@
   (function () {
     localStorage.setItem("staff_id", "<%= @staff.id %>");
     localStorage.setItem("staff_name", <%= raw @staff.name.to_json %>);
-    window.location.replace("<%= scan_path %>");
+    window.location.replace("<%= root_path %>");
   })();
 </script>

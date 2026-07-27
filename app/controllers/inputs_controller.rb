@@ -20,8 +20,8 @@ class InputsController < ApplicationController
       # 備品が見つかったら画面②へ（商品番号をURLパラメータで渡す）
       redirect_to new_stock_reduction_path(item_code: code)
     else
-      # 見つからなければエラーメッセージを出して画面①に戻る
-      redirect_to root_path, alert: "商品番号 #{code} の備品は見つかりませんでした"
+      # 見つからなければエラーメッセージを出して手入力画面に戻る
+      redirect_to manual_input_path, alert: "商品番号 #{code} の備品は見つかりませんでした"
     end
   end
 end
