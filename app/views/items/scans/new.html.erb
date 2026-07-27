@@ -7,7 +7,7 @@
 <video id="barcode-camera" autoplay playsinline muted></video>
 
 <p>
-  <a href="<%= root_path %>">手入力する</a>
+  <a href="<%= manual_input_path %>">手入力する</a>
 </p>
 
 <form id="scan-form" action="<%= items_scan_path %>" method="post">
@@ -25,11 +25,17 @@
 <p id="scan-message"></p>
 
 <script>
-  // localStorage の staff_id をフォームへ入れる（名前登録機能と後で接続）
   (function () {
     var staffId = localStorage.getItem("staff_id");
+
+    // staff_id がなければ初回の名前登録へ
+    if (!staffId) {
+      window.location.replace("<%= new_staff_path %>");
+      return;
+    }
+
     var field = document.getElementById("staff-id-field");
-    if (field && staffId) {
+    if (field) {
       field.value = staffId;
     }
 

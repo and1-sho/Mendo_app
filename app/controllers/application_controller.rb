@@ -5,9 +5,9 @@ class ApplicationController < ActionController::Base
 
   private
 
-  # ログイン成功後はスタッフ名登録画面へ
-  # （localStorage に staff_id があれば JS で /scan へ進む）
+  # ログイン成功後はトップ（スキャン）へ
+  # staff_id がなければスキャン画面の JS が名前登録へ送る
   def after_sign_in_path_for(_resource)
-    new_staff_path
+    root_path
   end
 end

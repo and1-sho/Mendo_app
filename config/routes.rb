@@ -10,8 +10,11 @@ Rails.application.routes.draw do
   # ヘルスチェック用
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # トップページ（画面①：テンキー入力画面）
-  root "inputs#index"
+  # トップページ = バーコードスキャン（主役画面）
+  root "items/scans#new"
+
+  # 手入力（テンキー）。スキャン画面の「手入力する」から来る
+  get "manual_input", to: "inputs#index", as: :manual_input
 
   # 商品番号を送信して判定する
   post "inputs", to: "inputs#create", as: :inputs
@@ -19,7 +22,7 @@ Rails.application.routes.draw do
   # 画面②：在庫を減らす（個数入力 + 確定）
   resources :stock_reductions, only: %i[new create]
 
-  # バーコードスキャン（カメラ画面 + API）
+  # バーコードスキャン API と /scan エイリアス
   get "scan", to: "items/scans#new", as: :scan
   post "items/scan", to: "items/scans#create", as: :items_scan
 

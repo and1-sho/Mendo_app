@@ -18,7 +18,7 @@
     // すでに staff_id があればスキャン画面へ
     var staffId = localStorage.getItem("staff_id");
     if (staffId) {
-      window.location.replace("<%= scan_path %>");
+      window.location.replace("<%= root_path %>");
     }
   })();
 </script>
