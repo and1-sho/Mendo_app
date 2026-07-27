@@ -1,0 +1,24 @@
+<%# 初回スタッフ名登録（見た目はスタッフ担当。クラスは付けない） %>
+
+<h1>名前を入力してください。</h1>
+
+<form action="<%= staffs_path %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label>
+    名前
+    <input type="text" name="name" autocomplete="name" autofocus>
+  </label>
+
+  <button type="submit">登録する</button>
+</form>
+
+<script>
+  (function () {
+    // すでに staff_id があればスキャン画面へ
+    var staffId = localStorage.getItem("staff_id");
+    if (staffId) {
+      window.location.replace("<%= scan_path %>");
+    }
+  })();
+</script>
