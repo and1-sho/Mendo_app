@@ -1,0 +1,11 @@
+<%# Staff 作成後: localStorage に保存してスキャン画面へ（クラスなし） %>
+
+<p>登録しています…</p>
+
+<script>
+  (function () {
+    localStorage.setItem("staff_id", "<%= @staff.id %>");
+    localStorage.setItem("staff_name", <%= raw @staff.name.to_json %>);
+    window.location.replace("<%= scan_path %>");
+  })();
+</script>
