@@ -5,12 +5,4 @@
 
 /* cssファイルの読み込み */
 /*
- *= require destyle
- *= require base
- *= require layout
- *= require components
- *= require pages/auth
- *= require pages/admin-item
- *= require pages/item-code
- *= require pages/stock-reduction
  */
