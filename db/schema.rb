@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_07_24_133829) do
     t.integer "reorder_quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "favorite", default: false, null: false
     t.string "barcode"
     t.index ["barcode"], name: "index_items_on_barcode", unique: true
     t.index ["item_code"], name: "index_items_on_item_code", unique: true

@@ -1,0 +1,14 @@
+@source "../../views";
+@source "../../helpers";
+@source "../../javascript";
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans", sans-serif;
+
+  --shadow-card: 0 0 10px rgba(0, 0, 0, 0.08),
+                 0 12px 24px rgba(0, 0, 0, 0.12);
+
+  --color-accent: #ff8401;
+}
