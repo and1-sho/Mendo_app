@@ -6,6 +6,7 @@
     per_page:      number of items to fetch per page
     remote:        data-remote
 -%>
-<span class="next js-button">
-  <%= link_to_unless current_page.last?, "&gt".html_safe, url, rel: 'next', remote: remote %>
+<span class="next text-accent js-button">
+  <%= link_to_unless current_page.last?, "&gt".html_safe, url, rel: 'next', remote: remote,
+      class: "flex items-center justify-center w-9 h-9 mx-1 rounded-lg bg-white text-neutral-900" %>
 </span>

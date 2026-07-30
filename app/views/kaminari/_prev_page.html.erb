@@ -7,5 +7,6 @@
     remote:        data-remote
 -%>
 <span class="prev js-button">
-  <%= link_to_unless current_page.first?, "&lt".html_safe, url, rel: 'prev', remote: remote %>
+  <%= link_to_unless current_page.first?, "&lt".html_safe, url, rel: 'prev', remote: remote,
+      class: "flex items-center justify-center w-9 h-9 mx-1 rounded-lg bg-white text-neutral-900" %>
 </span>
