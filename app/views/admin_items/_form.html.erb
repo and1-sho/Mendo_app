@@ -1,7 +1,7 @@
 <%# 登録・編集で共通して使うフォームのパーツ %>
 
 <%# 新規登録なら admin_items_path へ POST、編集なら admin_item_path へ PATCH %>
-<%= form_with model: item, url: item.new_record? ? admin_items_path : admin_item_path(item), class: "" do |f| %>
+<%= form_with model: item, url: item.new_record? ? admin_items_path : admin_item_path(item) do |f| %>
 
   <%# バリデーションエラーがある場合に表示 %>
   <% if item.errors.any? %>
