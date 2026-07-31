@@ -1,7 +1,7 @@
 <%# 登録・編集で共通して使うフォームのパーツ %>
 
 <%# 新規登録なら admin_items_path へ POST、編集なら admin_item_path へ PATCH %>
-<%= form_with model: item, url: item.new_record? ? admin_items_path : admin_item_path(item) do |f| %>
+<%= form_with model: item, url: item.new_record? ? admin_items_path : admin_item_path(item), class: "" do |f| %>
 
   <%# バリデーションエラーがある場合に表示 %>
   <% if item.errors.any? %>
@@ -12,70 +12,72 @@
     </ul>
   <% end %>
 
-  <div class="auth-form__field form-num">
-    <%= f.label :item_code, "商品番号", class: "auth-form__label" %>
-    <%= f.number_field :item_code, class: "auth-form__input" %>
-  </div>
-
-  <div class="auth-form__field">
-    <%= f.label :barcode, "バーコード", class: "auth-form__label" %>
-    <%= f.text_field :barcode, class: "auth-form__input" %>
-  </div>
-
-  <div class="auth-form__field">
-    <%= f.label :name, "備品名", class: "auth-form__label" %>
-    <%= f.text_field :name, class: "auth-form__input" %>
-  </div>
-
-  <div class="form-num__box">
-    <div class="auth-form__field form-num">
-      <%= f.label :stock, "在庫数", class: "auth-form__label" %>
-      <%= f.number_field :stock, class: "auth-form__input" %>
+  <div class="md:flex justify-between">
+    <div class="mb-6 w-full md:w-[265px] lg:w-50 lg:mb-8">
+      <%= f.label :item_code, "商品番号", class: "block mb-2 text-sm font-semibold tracking-[0.02em]" %>
+      <%= f.number_field :item_code, class: "h-[42px] py-[10px] px-4 border-[1px] border-neutral-300 flex flex-col w-full rounded-[10px] tracking-[0.1em]" %>
     </div>
 
-    <div class="auth-form__field form-num">
-      <%= f.label :order_trigger, "注文トリガー数", class: "auth-form__label" %>
-      <%= f.number_field :order_trigger, class: "auth-form__input" %>
-    </div>
-
-    <div class="auth-form__field form-num">
-      <%= f.label :reorder_quantity, "目標補充数", class: "auth-form__label" %>
-      <%= f.number_field :reorder_quantity, class: "auth-form__input" %>
+    <div class="mb-6 w-full md:w-[265px] lg:w-105.5 lg:mb-8">
+      <%= f.label :barcode, "バーコード", class: "block mb-2 text-sm font-semibold tracking-[0.02em]" %>
+      <%= f.text_field :barcode, class: "h-[42px] py-[10px] px-4 border-[1px] border-neutral-300 flex flex-col w-full rounded-[10px] tracking-[0.1em]" %>
     </div>
   </div>
 
-  <div class="auth-form__field form__field-image">
-    <%= f.label :image, "画像", class: "auth-form__label" %>
+  <div class="mb-6 lg:mb-8">
+    <%= f.label :name, "備品名", class: "block mb-2 text-sm font-semibold tracking-[0.02em]" %>
+    <%= f.text_field :name, class: "w-full md:w-[265px] h-[42px] py-[10px] px-4 border-[1px] border-neutral-300 flex flex-col md:w-full rounded-[10px] tracking-[0.02em]" %>
+  </div>
+
+  <div class="md:grid md:grid-cols-2 lg:grid-cols-3">
+    <div class="mb-6 w-full md:w-[265px] lg:w-50 lg:mb-8">
+      <%= f.label :stock, "在庫数", class: "block mb-2 text-sm font-semibold tracking-[0.02em]" %>
+      <%= f.number_field :stock, class: "h-[42px] py-[10px] px-4 border-[1px] border-neutral-300 flex flex-col w-full rounded-[10px] tracking-[0.1em]" %>
+    </div>
+
+    <div class="mb-6 w-full md:w-[265px] md:ml-auto lg:w-50 lg:mx-auto lg:mb-8">
+      <%= f.label :order_trigger, "注文トリガー数", class: "block mb-2 text-sm font-semibold tracking-[0.02em]" %>
+      <%= f.number_field :order_trigger, class: "h-[42px] py-[10px] px-4 border-[1px] border-neutral-300 flex flex-col w-full rounded-[10px] tracking-[0.1em]" %>
+    </div>
+
+    <div class="mb-6 w-full md:w-[265px] lg:w-50 lg:ml-auto lg:mb-8">
+      <%= f.label :reorder_quantity, "目標補充数", class: "block mb-2 text-sm font-semibold tracking-[0.02em]" %>
+      <%= f.number_field :reorder_quantity, class: "h-[42px] py-[10px] px-4 border-[1px] border-neutral-300 flex flex-col w-full rounded-[10px] tracking-[0.1em]" %>
+    </div>
+  </div>
+
+  <div class="mb-6 mb-10">
+    <%= f.label :image, "画像", class: "block mb-2 text-sm font-semibold tracking-[0.02em]" %>
 
     <%= f.file_field :image,
         id: "item-image",
         accept: "image/*",
-        class: "image-input",
+        class: "hidden",
         onchange: "previewImage(event)" %>
 
-    <div class="item-image__box">
-      <label for="item-image" class="image-upload">
-        <div class="image-icon" aria-hidden="true">
+    <div class="w-full h-fit lg:grid lg:grid-cols-2 lg:w-full">
+      <label for="item-image" class="w-full h-[146px] pb-2 flex flex-col justify-center items-center gap-2 border-[2px] border-neutral-200 rounded-xl bg-stone-50 lg:w-[308px] lg:h-[190px]">
+        <div class="text-neutral-400" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="request-new__video-drop-svg" width="33" height="33">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z" />
           </svg>
         </div>
-        <p class="image-text">タップで画像を追加する</p>
-        <span class="image-label">＋ 画像を選択</span>
+        <p class="mb-[3px] text-[15px] text-neutral-400">タップで画像を追加する</p>
+        <span class="py-2 pr-6 pl-4 text-white bg-stone-400 font-semibold rounded-lg tracking-[0.08em] text-sm">＋ 画像を選択</span>
       </label>
 
-      <div class="image-preview">
+      <div class="mt-5 lg:mt-0 overflow-hidden">
         <%# 保存済みの備品だけ image_tag を使う（未保存だと signed_id エラーになる） %>
         <% if item.persisted? && item.image_displayable? %>
-          <%= image_tag item.image, id: "preview", class: "preview-image" %>
+          <%= image_tag item.image, id: "preview", class: "mx-auto w-full max-h-[190px] md:w-100 max-w-100 md:max-h-[250px] overflow-hidden lg:w-[308px] lg:max-h-[190px] lg:mr-0 border-[1px] border-neutral-300" %>
         <% else %>
-          <img id="preview" class="preview-image" style="display: none;">
+          <img id="preview" class="w-full h-full mx-auto max-w-100 max-h-[190px] md:max-h-[250px] md:min-h-[250px] object-cover border-[1px] border-neutral-300 lg:mr-0 lg:w-[308px] lg:min-h-[190px] lg:max-h-[190px]" style="display: none;">
         <% end %>
       </div>
     </div>
   </div>
 
-  <%= f.submit "登録する", class: "submit-btn items-form-btn js-button", data: { sound: "confirm" } %>
+  <%= f.submit "登録する", class: "text-[19px] w-full md:absolute md:right-0 md:bottom-16 md:w-[270px] h-[68px] rounded-lg md:text-xl tracking-widest bg-orange-400 font-extrabold text-white lg:w-[308px] lg:bottom-8 js-button", data: { sound: "confirm" } %>
 
 <% end %>
 

@@ -1,8 +1,8 @@
-<div class="w-[568px] mx-auto relative pb-16 lg:w-[648px] lg:pb-8">
-  <h1 class="text-center text-4xl font-extrabold tracking-widest pt-28 pb-22 lg:py-16">備品登録</h1>
+<div class="px-8 md:px-0 md:w-[568px] mx-auto relative pb-16 lg:w-[648px] lg:pb-8">
+  <h1 class="text-[28px] pt-20 pb-14 text-center md:text-4xl font-extrabold tracking-widest md:pt-28 md:pb-22 lg:pt-24 lg:pb-23">備品登録</h1>
 
   <%= render "form", item: @item, class: "relative pb-[68px]" %>
 
-  <%= link_to "一覧に戻る", admin_items_path, class: "w-[270px] h-[68px] rounded-lg text-xl tracking-widest bg-white border-[2px] border-orange-400 text-orange-400 font-extrabold grid place-items-center lg:w-[308px] js-button",
+  <%= link_to "一覧に戻る", admin_items_path, class: "text-[19px] w-full mt-4 md:w-[270px] h-[68px] rounded-lg md:text-xl tracking-widest bg-white border-[2px] border-orange-400 text-orange-400 font-extrabold grid place-items-center lg:w-[308px] js-button",
       data: { sound: "delete" } %>
 </div>
