@@ -7,5 +7,6 @@
     remote:        data-remote
 -%>
 <span class="first">
-  <%= link_to_unless current_page.first?, t('views.pagination.first').html_safe, url, remote: remote %>
+  <%= link_to_unless current_page.first?, t('views.pagination.first').html_safe, url, remote: remote,
+      class: "flex items-center justify-center w-9 h-9 mx-1 rounded-lg bg-white text-neutral-900" %>
 </span>

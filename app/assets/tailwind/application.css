@@ -12,3 +12,9 @@
 
   --color-accent: #ff8401;
 }
+
+@layer components {
+  .form-input {
+    @apply h-[42px] py-[10px] px-4 border-[1px] border-neutral-300 flex flex-col w-full rounded-[10px];
+  }
+}
