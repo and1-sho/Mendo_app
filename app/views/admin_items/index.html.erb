@@ -1,9 +1,9 @@
 <div class="relative min-h-svh">
-  <h1 class="text-center text-4xl font-extrabold tracking-widest pt-28 pb-22 lg:pt-20 lg:pb-18">備品一覧</h1>
+  <h1 class="text-center text-[28px] pt-30 pb-18 font-extrabold tracking-widest md:text-4xl md:pt-28 md:pb-22 lg:pt-20 lg:pb-18">備品一覧</h1>
 
   <div class="absolute top-3 right-3 grid grid-cols-2 gap-2 tracking-widest">
-    <div class="text-center text-sm font-semibold bg-orange-400 text-white py-4 px-8 rounded-lg js-button" data-sound="delete"><%= link_to "トップに戻る", root_path %></div>
-    <div class="text-center text-sm font-semibold bg-white border-[1.5px] border-orange-400 text-orange-400 py-4 px-8 rounded-lg js-button" data-sound="delete"><%= button_to "ログアウト", destroy_user_session_path, method: :delete %></div>
+    <div class="text-center py-3 pt-[13px] px-5 text-sm font-semibold bg-orange-400 text-white md:py-4 md:px-8 rounded-lg js-button" data-sound="delete"><%= link_to "トップに戻る", root_path %></div>
+    <div class="text-center py-3 px-4 text-sm font-semibold bg-white border-[1.5px] border-orange-400 text-orange-400 md:py-4 md:px-8 rounded-lg js-button" data-sound="delete"><%= button_to "ログアウト", destroy_user_session_path, method: :delete %></div>
   </div>
 
   <%= link_to new_admin_item_path, class: "fixed right-6 bottom-8 rounded-full shadow-card js-button",
@@ -16,7 +16,7 @@
   <% end %>
 
   <article  class="w-screen h-full pt-10 pb-22 grid justify-self-center bg-neutral-100">
-    <table class="hidden lg:inline-block lg:w-[770px] lg:m-auto lg:w-[946px]">
+    <table class="hidden md:inline-block md:w-[770px] md:m-auto lg:w-[946px]">
       <thead class="inline-block w-full mb-4 text-[15px] tracking-[0.04em] leading-[1.4]">
         <tr class="w-full h-full bg-white rounded-lg min-h-16 grid grid-cols-[66px_100px_170px_70px_95px_100px_100px] gap-2 pl-5 text-left items-center lg:grid-cols-[66px_120px_220px_70px_130px_160px_111px] lg:h-18">
           <th>商品番号</th>
@@ -31,7 +31,7 @@
       <tbody class="grid gap-y-4">
         <% @items.each do |item| %>
           <tr class="w-full h-16 bg-white min-h-16 tracking-[0.08em] grid grid-cols-[66px_100px_170px_70px_95px_100px_100px] gap-2 pl-5 items-center rounded-lg shadow-card lg:grid-cols-[66px_120px_220px_70px_130px_160px_111px] lg:h-18">
-            <td ><%= item.item_code %></td>
+            <td><%= item.item_code %></td>
             <td class="w-21 h-full bg-neutral-300 overflow-hidden lg:w-[100px]">
               <% if item.image_displayable? %>
                 <%= image_tag item.image, width: 60, class: "w-full h-full object-cover" %>
@@ -68,41 +68,38 @@
       </tbody>
     </table>
 
-    <div class="lg:hidden p-4">
+    <div class="md:hidden p-4 pb-0">
       <% @items.each do |item| %>
-        <div class="bg-white mb-4 p-4 shadow-card rounded-lg grid grid-cols-2">
-          <div class="w-36 h-36 bg-neutral-300 overflow-hidden lg:w-[100px]">
-            <% if item.image_displayable? %>
-              <%= image_tag item.image, width: 60, class: "w-full h-full object-cover" %>
-            <% end %>
-          </div>
-          <div>
-            <p class="text-[20px]"><%= item.item_code %></p>
-            <p class="py-[6px] leading-[1.2]"><%= item.name %></p>
-            <p class="flex justify-between"><span>在庫数</span><%= item.stock %></p>
-            <p class="flex justify-between"><span>注文トリガー数</span><%= item.order_trigger %></p>
-            <p class="flex justify-between"><span>目標補充数</span><%= item.reorder_quantity %></p>
-            <div class="flex gap-x-5 items-center">
-              <%= link_to edit_admin_item_path(item), class: "icon-button js-button", data: { sound: "confirm" } do %>
-                <svg width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9.25 3.34766H2.75C1.64543 3.34766 0.75 4.24309 0.75 5.34766V21.8477C0.75 22.9522 1.64543 23.8477 2.75 23.8477H20.75C21.8546 23.8477 22.75 22.9522 22.75 21.8477V15.3477" stroke="#151515" stroke-width="1.5"/>
-                  <path d="M8.75 12.3477L12.25 16.3477M18.663 2.84766L20.5431 1.0308C20.9354 0.651634 21.5593 0.656966 21.9451 1.04278L24.0429 3.14055C24.4334 3.53107 24.4334 4.16424 24.0429 4.55476L22.0403 6.55738L12.25 16.3477L7.25 17.3477L8 14.8477L8.75 12.3477L18.663 2.84766ZM22.0403 6.55738L18.663 2.84766" stroke="#151515" stroke-width="1.5"/>
-                </svg>
-              <% end %>
-
-              <%= button_to admin_item_path(item),
-                    method: :delete,
-                    form: { data: { turbo_confirm: "削除してよいですか？" } },
-                    data: { sound: "delete" },
-                    class: "icon-button flex items-center js-button" do %>
-                <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M0 3.75H8V2.75C8 1.64543 8.89543 0.75 10 0.75H13C14.1046 0.75 15 1.64543 15 2.75V3.75H23.5" stroke="#151515" stroke-width="1.5"/>
-                  <path d="M2 5.75L3.80232 21.9709C3.91486 22.9837 4.77099 23.75 5.79009 23.75H17.2586C18.2568 23.75 19.1022 23.0139 19.2396 22.0251L21.5 5.75" stroke="#151515" stroke-width="1.5"/>
-                  <path d="M8.5 10.25L15 16.75" stroke="#151515" stroke-width="1.5" stroke-linecap="round"/>
-                  <path d="M8.5 16.75L15 10.25" stroke="#151515" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
+        <div class="bg-white mb-4 p-4 shadow-card rounded-lg">
+          <div class="grid grid-cols-2">
+            <div class="rounded-lg relative w-36 h-36 bg-neutral-300 overflow-hidden lg:w-[100px]">
+              <% if item.image_displayable? %>
+                <%= image_tag item.image, width: 60, class: "w-full h-full object-cover" %>
               <% end %>
             </div>
+
+            <div>
+              <div class="flex justify-between">
+              <p class="text-[18px]"><%= item.item_code %></p>
+              </div>
+              <p class="py-[6px] leading-[1.2] mb-2"><%= item.name %></p>
+              <p class="flex justify-between text-[16px] leading-[1.55] items-center text-accent"><span class="text-[13px] font-semibold">在庫数</span><span class="text-accent font-semibold"><%= item.stock %></span></p>
+              <p class="flex justify-between text-[16px] leading-[1.55] items-center"><span class="text-[13px]">注文トリガー数</span><span><%= item.order_trigger %></span></p>
+              <p class="flex justify-between text-[16px] leading-[1.55] items-center"><span class="text-[13px]">目標補充数</span><span><%= item.reorder_quantity %></span></p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-x-2 items-center justify-between mt-4 tracking-widest">
+            <%= link_to edit_admin_item_path(item), class: "text-sm font-semibold icon-button bg-orange-400 py-3 text-white text-center rounded-lg js-button", data: { sound: "confirm" } do %>
+              <span class="">編集する</span>
+            <% end %>
+            <%= button_to admin_item_path(item),
+              method: :delete,
+              form: { data: { turbo_confirm: "削除してよいですか？" } },
+              data: { sound: "delete" },
+              class: "text-sm font-semibold icon-button bg-white py-[10px] text-accent border-[1.5px] border-orange-400 w-full rounded-lg js-button" do %>
+              <span class="">削除する</span>
+            <% end %>
           </div>
         </div>
       <% end %>
@@ -113,5 +110,4 @@
     </div>
   </article>
 
-  
 </div>
