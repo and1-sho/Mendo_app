@@ -19,10 +19,10 @@
   <body class="font-sans">
     <%# フラッシュメッセージ（数秒後に自動で消える） %>
     <% if flash[:notice] %>
-      <p id="flash-notice" class="flash-message success"><%= flash[:notice] %></p>
+      <p id="flash-notice" class="text-center text-white text-lg leading-[1.8] font-medium tracking-widest p-8 bg-success md:text-xl md:p-11"><%= flash[:notice] %></p>
     <% end %>
     <% if flash[:alert] %>
-      <p id="flash-alert" class="flash-message error"><%= flash[:alert] %></p>
+      <p id="flash-alert" class="text-center text-white text-lg leading-[1.8] font-medium tracking-widest p-8 bg-error md:text-xl md:p-11"><%= flash[:alert] %></p>
     <% end %>
 
     <%= yield %>

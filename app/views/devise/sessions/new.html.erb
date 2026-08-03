@@ -1,30 +1,30 @@
-<div class="auth-page">
-  <div class="auth-inner">
-    <h1 class="auth-title">ログイン</h1>
+<div class="w-screen h-svh relative">
+  <div class="absolute top-[18%] left-1/2 -translate-x-1/2 -translate-y-[20%] w-90 h-fit py-9 px-7 rounded-2xl bg-white shadow-card border-[1px] border-neutral-300 sm:top-[20%] sm:w-115 lg:top-[30%] lg:-translate-y-[30%] xl:top-[22%]">
+    <h1 class="mb-[30px] text-2xl font-bold text-center tracking-[0.02em]">ログイン</h1>
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "auth-form" }) do |f| %>
-      <div class="auth-form__field">
-        <%= f.label :email, "メールアドレス", class: "auth-form__label" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "auth-form__input" %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "flex flex-col" }) do |f| %>
+      <div class="mb-[18px] relative">
+        <%= f.label :email, "メールアドレス", class: "block mb-2 text-sm font-semibold" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-input focus:outline-none focus:border-[#021b15] focus:shadow-[0_0_0_3px_rgba(2,27,21,0.12)]" %>
       </div>
 
-      <div class="auth-form__field">
-        <%= f.label :password, "パスワード", class: "auth-form__label" %>
-        <%= f.password_field :password, autocomplete: "current-password", class: "auth-form__input" %>
+      <div class="mb-[18px] relative">
+        <%= f.label :password, "パスワード", class: "block mb-2 text-sm font-semibold" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-input focus:outline-none focus:border-[#021b15] focus:shadow-[0_0_0_3px_rgba(2,27,21,0.12)]" %>
       </div>
 
       <% if devise_mapping.rememberable? %>
-        <div class="auth-form__field auth-field--check">
-          <%= f.check_box :remember_me, class: "auth-checkbox" %>
-          <%= f.label :remember_me, "ログインを記憶する", class: "auth-check-label" %>
+        <div class="mb-[18px] relative flex text-center gap-[10px] mt-[2px] mb-7">
+          <%= f.check_box :remember_me, class: "w-[18px] cursor-pointer" %>
+          <%= f.label :remember_me, "ログインを記憶する", class: "text-sm font-semibold opacity-85 cursor-pointer" %>
         </div>
       <% end %>
 
-      <%= f.submit "ログイン", class: "login-btn js-button", data: { sound: "confirm" } %>
+      <%= f.submit "ログイン", class: "bg-orange-400 py-3 px-[18px] w-full h-[54px] text-white text-lg font-extrabold tracking-[0.08em] rounded-[10px] mt-2 js-button", data: { sound: "confirm" } %>
     <% end %>
 
-    <div class="auth-link js-button">
-      <%= link_to "新規登録はこちら", new_user_registration_path, class: "auth-link__signup" %>
+    <div class="mt-6 mx-auto w-fit js-button">
+      <%= link_to "新規登録はこちら", new_user_registration_path, class: "inline-block text-sm font-semibold underline underline-offset-3" %>
     </div>
   </div>
 </div>

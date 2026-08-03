@@ -11,6 +11,8 @@
                  0 12px 24px rgba(0, 0, 0, 0.12);
 
   --color-accent: #ff8401;
+  --color-success: #2acf48;
+  --color-error: #ff4c29;
 }
 
 @layer components {
