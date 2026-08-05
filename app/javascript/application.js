@@ -3,3 +3,5 @@
 
 import "flash";
 import "button_effect";
+import "@hotwired/turbo-rails"
+import "controllers"

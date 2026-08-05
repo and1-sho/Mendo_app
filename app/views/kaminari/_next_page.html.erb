@@ -8,5 +8,6 @@
 -%>
 <span class="next text-accent js-button">
   <%= link_to_unless current_page.last?, "&gt".html_safe, url, rel: 'next', remote: remote,
-      class: "flex items-center justify-center w-9 h-9 mx-1 rounded-lg bg-white text-neutral-900" %>
+      class: "flex items-center justify-center w-8 h-8 text-sm md:w-9 md:h-9 md:text-base mx-1 rounded-lg bg-white text-neutral-900",
+    data: { turbo_frame: "items" } %>
 </span>
