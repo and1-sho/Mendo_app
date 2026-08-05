@@ -1,24 +1,26 @@
-<div class="stock-reduction-page">
-  <div class="stock-reduction__inner">
-    <article class="item-box">
+<div class="pt-8 px-4 pb-10 md:px-15 md:pb-35 min-h-svh lg:pt-16 lg:pb-0 xl:max-w-[1060px] xl:px-0 xl:pt-32 xl:mx-auto">
+  <div class="relative lg:ml-auto lg:w-full lg:max-w-[1060px] lg:pl-[53%] xl:max-w-[1060px]">
+    <article class="mb-10 relative lg:absolute lg:left-0 lg:top-0 xl:ml-0">
       <%# 備品の画像・商品番号・備品名を表示 %>
-      <p class="item-code"><%= @item.item_code %></p>
-      <p class="mvp-none">備品名: <%= @item.name %></p>
-      <p class="mvp-none">現在の在庫数: <%= @item.stock %></p>
+      <p class="absolute top-2 left-2 text-orange-400 bg-white border-[2.5px] md:border-[3px] border-orange-400 min-w-25 md:min-w-35 text-center px-4 py-1 text-3xl rounded-xl md:px-3 md:py-2 md:text-4xl font-semibold md:rounded-2xl"><%= @item.item_code %></p>
+      <p class="hidden">備品名: <%= @item.name %></p>
+      <p class="hidden">現在の在庫数: <%= @item.stock %></p>
 
-      <div class="item-image item-code-<%= @item.item_code %>">
+      <div class="w-full h-71 bg-neutral-200 overflow-hidden rounded-2xl lg:w-130 lg:h-100 item-code-<%= @item.item_code %>">
         <% if @item.image_displayable? %>
-          <%= image_tag @item.image %>
+          <%= image_tag @item.image, class: "w-full h-full object-cover" %>
         <% else %>
-          <p class="no-img">画像なし</p>
+          <div class="grid h-full place-content-center">
+            <p class="text-2xl md:text-3xl font-semibold tracking-[0.2em] opacity-30">画像なし</p>
+          </div>
         <% end %>
       </div>
     </article>
 
-    <h1 class="page-title"><span class="accent">個数</span>を入力してください</h1>
+    <h1 class="text-[24px] font-extrabold tracking-widest text-center md:text-4xl"><span class="text-accent">個数</span>を入力してください</h1>
 
     <%# 個数入力エリア（デフォルトは1） %>
-    <p class="input-code" id="display">1</p>
+    <p class="text-[72px] mt-6 mb-10 md:text-[136px] text-orange-400 font-bold tracking-widest leading-none md:mb-0 md:mt-4 pl-2 text-center lg:mt-6 lg:leading-[1.4]" id="display">1</p>
 
     <%# 決定ボタンを押すとフォームをサーバーに送信する %>
     <%= form_with url: stock_reductions_path, method: :post do |f| %>
@@ -28,22 +30,22 @@
       <%# JSで個数を入れる隠しフィールド（デフォルトは1） %>
       <%= f.hidden_field :quantity, id: "quantity-input", value: "1" %>
 
-      <article class="num-btn__box">
+      <article class="max-w-[300px] grid grid-cols-3 gap-3 text-4xl font-semibold w-lg mx-auto md:gap-6 md:text-6xl md:scale-85 md:max-w-none">
         <%# テンキーのボタン配置 %>
-        <button class="num-btn js-button" type="button" onclick="addNumber('1')">1</button>
-        <button class="num-btn js-button" type="button" onclick="addNumber('2')">2</button>
-        <button class="num-btn js-button" type="button" onclick="addNumber('3')">3</button>
-        <button class="num-btn js-button" type="button" onclick="addNumber('4')">4</button>
-        <button class="num-btn js-button" type="button" onclick="addNumber('5')">5</button>
-        <button class="num-btn js-button" type="button" onclick="addNumber('6')">6</button>
-        <button class="num-btn js-button" type="button" onclick="addNumber('7')">7</button>
-        <button class="num-btn js-button" type="button" onclick="addNumber('8')">8</button>
-        <button class="num-btn js-button" type="button" onclick="addNumber('9')">9</button>
+        <button class="bg-white rounded-lg shadow-card aspect-11/7 js-button" type="button" onclick="addNumber('1')">1</button>
+        <button class="bg-white rounded-lg shadow-card aspect-11/7 js-button" type="button" onclick="addNumber('2')">2</button>
+        <button class="bg-white rounded-lg shadow-card aspect-11/7 js-button" type="button" onclick="addNumber('3')">3</button>
+        <button class="bg-white rounded-lg shadow-card aspect-11/7 js-button" type="button" onclick="addNumber('4')">4</button>
+        <button class="bg-white rounded-lg shadow-card aspect-11/7 js-button" type="button" onclick="addNumber('5')">5</button>
+        <button class="bg-white rounded-lg shadow-card aspect-11/7 js-button" type="button" onclick="addNumber('6')">6</button>
+        <button class="bg-white rounded-lg shadow-card aspect-11/7 js-button" type="button" onclick="addNumber('7')">7</button>
+        <button class="bg-white rounded-lg shadow-card aspect-11/7 js-button" type="button" onclick="addNumber('8')">8</button>
+        <button class="bg-white rounded-lg shadow-card aspect-11/7 js-button" type="button" onclick="addNumber('9')">9</button>
         <div class="empty"></div>
-        <button class="num-btn js-button" type="button" onclick="addNumber('0')">0</button>
+        <button class="bg-white rounded-lg shadow-card aspect-11/7 js-button" type="button" onclick="addNumber('0')">0</button>
 
         <%# 1文字消すボタン %>
-        <button class="num-btn__delete js-button" data-sound="delete" type="button" onclick="deleteNumber()">
+        <button class="scale-65 mx-auto md:scale-100 js-button" data-sound="delete" type="button" onclick="deleteNumber()">
           <svg width="89" height="57" viewBox="0 0 89 57" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M21.6367 2.5H86C86.2761 2.5 86.5 2.72386 86.5 3V54C86.5 54.2761 86.2761 54.5 86 54.5H21.5732C21.4135 54.5 21.263 54.424 21.1689 54.2949L3.26465 29.7344C3.14027 29.5638 3.13621 29.3328 3.25488 29.1582L21.2227 2.71875C21.3157 2.58186 21.4712 2.5 21.6367 2.5Z" fill="#7C7C7C" stroke="#7C7C7C" stroke-width="5"/>
             <path d="M63 17L39 41" stroke="white" stroke-width="5"/>
@@ -53,11 +55,11 @@
       </article>
 
       <%# 決定ボタン %>
-      <button class="submit-btn js-button" data-sound="confirm" type="submit"><span>決定</span></button>
+      <button class="bg-orange-400 flex justify-center py-5 md:py-9 pl-6 text-[26px] mt-11 mx-auto w-full max-w-[300px] md:w-1/2 md:max-w-84 text-white md:text-4xl font-extrabold tracking-[.6em] rounded-2xl md:absolute md:right-0 md:mt-3 lg:max-w-130 lg:right-auto lg:left-0 lg:bottom-[155px] lg:text-[32px] lg:py-7.6 js-button" data-sound="confirm" type="submit"><span>決定</span></button>
     <% end %>
 
     <%# 戻るボタン（手入力テンキーへ） %>
-    <div class="back-btn js-button" data-sound="delete">
+    <div class="bg-white border-[3px] text-[26px] border-orange-400 py-4 md:py-8 pl-6 mt-3 mx-auto w-full max-w-[300px] md:w-1/2 md:max-w-84 h-112px text-orange-400 md:text-4xl font-extrabold tracking-[.6em] rounded-2xl md:absolute md:left-0 text-center lg:max-w-130 lg:bottom-[30px] lg:text-[32px] lg:py-7.6 js-button" data-sound="delete">
       <%= link_to "戻る", manual_input_path %>
     </div>
   </div>
