@@ -2,8 +2,8 @@
   <h1 class="text-center text-[28px] pt-30 pb-18 font-extrabold tracking-widest md:text-4xl md:pt-28 md:pb-22 lg:pt-20 lg:pb-18">備品一覧</h1>
 
   <div class="absolute top-3 right-3 grid grid-cols-2 gap-2 tracking-widest">
-    <div class="text-center py-3 pt-[13px] px-5 text-sm font-semibold bg-orange-400 text-white md:py-4 md:px-8 rounded-lg js-button" data-sound="delete"><%= link_to "トップに戻る", root_path %></div>
-    <div class="text-center py-3 px-4 text-sm font-semibold bg-white border-[1.5px] border-orange-400 text-orange-400 md:py-4 md:px-8 rounded-lg js-button" data-sound="delete"><%= button_to "ログアウト", destroy_user_session_path, method: :delete %></div>
+    <div class="text-center text-sm font-semibold bg-orange-400 text-white rounded-lg js-button" data-sound="delete"><%= link_to "トップに戻る", root_path, class: "cursor-pointer block py-[14px] px-5 md:py-4 md:pt-[18px] md:px-8" %></div>
+    <div class="text-center text-sm font-semibold bg-white border-[1.5px] border-orange-400 text-orange-400 rounded-lg js-button" data-sound="delete"><%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "cursor-pointer py-3 px-4 w-full md:py-4 md:px-8" %></div>
   </div>
 
   <%= link_to new_admin_item_path, class: "fixed right-6 bottom-8 rounded-full shadow-card js-button",
@@ -55,7 +55,7 @@
                       method: :delete,
                       form: { data: { turbo_confirm: "削除してよいですか？" } },
                       data: { sound: "delete" },
-                      class: "icon-button flex items-center js-button" do %>
+                      class: "cursor-pointer icon-button flex items-center js-button" do %>
                   <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 3.75H8V2.75C8 1.64543 8.89543 0.75 10 0.75H13C14.1046 0.75 15 1.64543 15 2.75V3.75H23.5" stroke="#151515" stroke-width="1.5"/>
                     <path d="M2 5.75L3.80232 21.9709C3.91486 22.9837 4.77099 23.75 5.79009 23.75H17.2586C18.2568 23.75 19.1022 23.0139 19.2396 22.0251L21.5 5.75" stroke="#151515" stroke-width="1.5"/>
