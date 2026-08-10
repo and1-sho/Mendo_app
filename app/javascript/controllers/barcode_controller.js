@@ -5,6 +5,21 @@ export default class extends Controller {
 
   connect() {
     console.log("Barcode controller connected")
+    console.log("ZXingBrowser:", window.ZXingBrowser)
+
+    this.reader = new ZXingBrowser.BrowserMultiFormatReader()
+
+    this.reader.decodeFromVideoElement(
+      this.videoTarget,
+      (result, error) => {
+        if (result) {
+          const barcodeInput = document.getElementById("barcode-input")
+          barcodeInput.value = result.getText()
+
+          console.log("バーコード読み取り:", result.getText())
+        }
+      }
+    )
 
     this.beforeCache = this.stopCamera.bind(this)
     document.addEventListener("turbo:before-cache", this.beforeCache)
