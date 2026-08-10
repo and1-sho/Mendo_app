@@ -9,14 +9,25 @@ export default class extends Controller {
 
     this.reader = new ZXingBrowser.BrowserMultiFormatReader()
 
+    this.scanned = false
+
+    this.beforeCache = this.stopCamera.bind(this)
+    document.addEventListener("turbo:before-cache", this.beforeCache)
+
+    this.startCamera()
+
     this.reader.decodeFromVideoElement(
       this.videoTarget,
       (result, error) => {
-        if (result) {
+        if (result && !this.scanned) {
+          this.scanned = true
+
           const barcodeInput = document.getElementById("barcode-input")
           barcodeInput.value = result.getText()
 
           console.log("バーコード読み取り:", result.getText())
+
+          document.getElementById("scan-form").requestSubmit()
         }
       }
     )
