@@ -27,6 +27,8 @@ export default class extends Controller {
 
           console.log("バーコード読み取り:", result.getText())
 
+          this.stopCamera()
+
           document.getElementById("scan-form").requestSubmit()
         }
       }
