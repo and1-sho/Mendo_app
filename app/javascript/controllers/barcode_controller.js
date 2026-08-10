@@ -33,11 +33,6 @@ export default class extends Controller {
         }
       }
     )
-
-    this.beforeCache = this.stopCamera.bind(this)
-    document.addEventListener("turbo:before-cache", this.beforeCache)
-
-    this.startCamera()
   }
 
   disconnect() {
