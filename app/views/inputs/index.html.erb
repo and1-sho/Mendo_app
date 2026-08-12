@@ -35,9 +35,9 @@
 
     <%# 決定ボタン（フォームを送信する） %>
     <div class="w-74 mx-auto md:w-141 md:grid md:grid-cols-2 md:w-160 md:gap-x-8  md:mt-18 lg:grid-cols-1 lg:grid-row-2 lg:mt-0 lg:gap-y-6 lg:w-68 lg:absolute lg:bottom-8 lg:right-8 xl:w-80 xl:right-20 xl:bottom-20">
-      <button class="cursor-pointer bg-accent py-5 pl-6 mt-14 w-full max-w-lg text-[26px] text-white font-extrabold tracking-[.6em] rounded-2xl md:mt-0 md:py-6 md:py-9 md:text-4xl md:col-start-2 lg:row-start-1 lg:col-start-1 js-button lg:text-[28px] xl:text-3xl" data-sound="confirm" type="submit"><span>決定</span></button>
+      <button class="cursor-pointer bg-accent py-5 pl-6 mt-14 w-full max-w-lg text-[26px] text-white font-extrabold tracking-[.6em] rounded-xl md:mt-0 md:py-6 md:py-9 md:text-4xl md:col-start-2 lg:row-start-1 lg:col-start-1 js-button lg:text-[28px] xl:text-3xl" data-sound="confirm" type="submit"><span>決定</span></button>
 
-      <p class="text-[24px] mt-4 bg-white text-accent font-extrabold border-[2.5px] border-accent tracking-[.1em] rounded-2xl js-button md:mt-0 md:text-3xl md:border-[3px] md:col-start-1 md:row-start-1 lg:row-start-2 lg:text-[26px]"><a class="block w-full h-full py-5 md:py-9" data-sound="delete" href="<%= root_path %>">スキャンに戻る</a></p>
+      <p class="text-[24px] mt-4 bg-white text-accent font-extrabold border-[2.5px] border-accent tracking-[.1em] rounded-xl js-button md:mt-0 md:text-3xl md:border-[3px] md:col-start-1 md:row-start-1 lg:row-start-2 lg:text-[26px]"><a class="block w-full h-full py-5 md:py-9" data-sound="delete" href="<%= root_path %>" data-turbo="false">スキャンに戻る</a></p>
     </div>
   <% end %>
 
