@@ -9,6 +9,8 @@ export default class extends Controller {
 
     this.reader = new ZXingBrowser.BrowserMultiFormatReader()
 
+    this.scanSound = new Audio("/assets/scan.mp3")
+
     this.scanned = false
 
     this.beforeCache = this.stopCamera.bind(this)
@@ -21,6 +23,8 @@ export default class extends Controller {
       (result, error) => {
         if (result && !this.scanned) {
           this.scanned = true
+
+          this.scanSound.play()
 
           const barcodeInput = document.getElementById("barcode-input")
           barcodeInput.value = result.getText()
