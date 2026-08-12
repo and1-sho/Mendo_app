@@ -1,17 +1,20 @@
 <%# 初回スタッフ名登録（見た目はスタッフ担当。クラスは付けない） %>
 
-<h1>名前を入力してください。</h1>
+<div class="w-screen h-svh relative">
+  <div class="absolute top-[18%] left-1/2 -translate-x-1/2 -translate-y-[20%] w-90 h-fit py-9 px-7 rounded-2xl bg-white shadow-card border-[1px] border-neutral-300 sm:top-[20%] sm:w-115 lg:top-[30%] lg:-translate-y-[30%] xl:top-[22%]">
+    <h1 class="mb-[30px] text-2xl font-bold text-center tracking-[0.02em] md:tracking-[0.06em]">名前を入力してください</h1>
 
-<form action="<%= staffs_path %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <form action="<%= staffs_path %>" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-  <label>
-    名前
-    <input type="text" name="name" autocomplete="name" autofocus>
-  </label>
+      <label class="mb-[18px] relative">
+        <input type="text" name="name" autocomplete="name" class="form-input focus:outline-none focus:border-[#021b15] tracking-[0.06em] mt-10 mb-7 md:mb-8 h-[50px] focus:shadow-[0_0_0_3px_rgba(2,27,21,0.12)]" placeholder="田中 太郎" autofocus>
+      </label>
 
-  <button type="submit">登録する</button>
-</form>
+      <button type="submit" class="cursor-pointer bg-orange-400 py-3 px-[18px] w-full h-[54px] text-white text-lg font-extrabold tracking-[0.08em] rounded-[10px] js-button" data-sound="confirm">登録する</button>
+    </form>
+  </div>
+</div>
 
 <script>
   (function () {
