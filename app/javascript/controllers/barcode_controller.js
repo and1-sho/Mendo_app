@@ -4,11 +4,13 @@ export default class extends Controller {
   static targets = ["video", "loading"]
 
   connect() {
+    const body = document.body
+
     console.log("Barcode controller connected")
     console.log("ZXingBrowser:", window.ZXingBrowser)
 
     this.reader = new ZXingBrowser.BrowserMultiFormatReader()
-    this.scanSound = new Audio("/assets/scan.mp3")
+    this.scanSound = new Audio(body.dataset.scanSound)
 
     this.scanned = false
     this.controls = null
