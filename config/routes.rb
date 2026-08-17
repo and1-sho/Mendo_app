@@ -33,5 +33,8 @@ Rails.application.routes.draw do
 
   # 管理画面（備品の一覧・登録・編集・削除）
   # show は未使用。残すと削除失敗時などに GET /admin/items/:id で 404 になりやすい
-  resources :admin_items, path: "admin/items", except: %i[show]
+  resources :admin_items, path: "admin/items", except: %i[show] do
+    # 入庫（在庫を増やして履歴に残す）
+    resource :stock_receipt, only: %i[new create], controller: "admin_stock_receipts"
+  end
 end

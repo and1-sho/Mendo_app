@@ -1,0 +1,20 @@
+<%# 管理画面：入庫（見た目はスタッフ担当。クラスは付けない） %>
+
+<h1>入庫</h1>
+
+<p>商品番号: <%= @item.item_code %></p>
+<p>備品名: <%= @item.name %></p>
+<p>現在の在庫数: <%= @item.stock %></p>
+
+<%= form_with url: admin_item_stock_receipt_path(@item), method: :post do |f| %>
+  <div>
+    <%= f.label :quantity, "入庫数" %>
+    <%= f.number_field :quantity, min: 1, step: 1, required: true, autofocus: true %>
+  </div>
+
+  <div>
+    <%= f.submit "入庫する" %>
+  </div>
+<% end %>
+
+<p><%= link_to "備品一覧に戻る", admin_items_path %></p>
