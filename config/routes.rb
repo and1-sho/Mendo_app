@@ -27,7 +27,9 @@ Rails.application.routes.draw do
   post "items/scan", to: "items/scans#create", as: :items_scan
 
   # 初回スタッフ名登録
-  resources :staffs, only: %i[new create]
+  resources :staffs, only: %i[new create] do
+    get :registered, on: :collection
+  end
 
   # 管理画面（備品の一覧・登録・編集・削除）
   # show は未使用。残すと削除失敗時などに GET /admin/items/:id で 404 になりやすい
