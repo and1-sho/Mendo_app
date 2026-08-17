@@ -1,7 +1,9 @@
+const body = document.body;
+
 const sounds = {
-  click: new Audio("/assets/click.mp3"),
-  delete: new Audio("/assets/delete.mp3"),
-  confirm: new Audio("/assets/confirm.mp3"),
+  click: new Audio(body.dataset.clickSound),
+  delete: new Audio(body.dataset.deleteSound),
+  confirm: new Audio(body.dataset.confirmSound),
 };
 
 // 最初に読み込む
