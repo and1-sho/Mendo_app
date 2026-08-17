@@ -6,6 +6,7 @@ class StaffsController < ApplicationController
   end
 
   # 名前を受け取り Staff を作成（同じ名前なら既存を再利用）
+  # Turbo は POST 後に redirect を要求するため、ここでは render しない
   def create
     name = params[:name].to_s.strip
 
@@ -15,7 +16,12 @@ class StaffsController < ApplicationController
       return
     end
 
-    @staff = current_user.staffs.find_or_create_by!(name: name)
-    render :registered, status: :ok
+    staff = current_user.staffs.find_or_create_by!(name: name)
+    redirect_to registered_staffs_path(staff_id: staff.id)
+  end
+
+  # localStorage 保存用の中継ページ（GET）
+  def registered
+    @staff = current_user.staffs.find(params[:staff_id])
   end
 end
