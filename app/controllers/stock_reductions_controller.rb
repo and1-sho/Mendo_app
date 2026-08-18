@@ -27,9 +27,18 @@ class StockReductionsController < ApplicationController
       return
     end
 
-    # 在庫を減らして保存する
+    # 在庫を減らして履歴に残す
     previous_stock = @item.stock
-    @item.update!(stock: previous_stock - quantity)
+    staff = current_user.staffs.find_by(id: params[:staff_id])
+    unless staff
+      redirect_to new_stock_reduction_path(item_code: @item.item_code), alert: "スタッフが登録されていません"
+      return
+    end
+
+    ActiveRecord::Base.transaction do
+      @item.update!(stock: previous_stock - quantity)
+      StockHistory.create!(item: @item, staff: staff, quantity: -quantity)
+    end
 
     # トリガー数以下になった瞬間にメールを送る
     StockAlertNotifier.new(

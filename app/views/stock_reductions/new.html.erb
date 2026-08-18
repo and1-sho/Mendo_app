@@ -26,6 +26,7 @@
     <%= form_with url: stock_reductions_path, method: :post do |f| %>
       <%# 備品のIDをサーバーに渡す %>
       <%= f.hidden_field :item_id, value: @item.id %>
+      <%= f.hidden_field :staff_id, id: "staff-id-field", value: "" %>
 
       <%# JSで個数を入れる隠しフィールド（デフォルトは1） %>
       <%= f.hidden_field :quantity, id: "quantity-input", value: "1" %>
@@ -66,6 +67,19 @@
 </div>
 
 <script>
+  (function () {
+    var staffId = localStorage.getItem("staff_id");
+    if (!staffId) {
+      window.location.replace("<%= new_staff_path %>");
+      return;
+    }
+
+    var field = document.getElementById("staff-id-field");
+    if (field) {
+      field.value = staffId;
+    }
+  })();
+
   function addNumber(num) {
     var input = document.getElementById('quantity-input');
     var display = document.getElementById('display');
