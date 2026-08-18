@@ -37,4 +37,7 @@ Rails.application.routes.draw do
     # 入庫（在庫を増やして履歴に残す）
     resource :stock_receipt, only: %i[new create], controller: "admin_stock_receipts"
   end
+
+  # 管理画面：入出庫履歴
+  resources :admin_stock_histories, path: "admin/stock_histories", only: %i[index]
 end

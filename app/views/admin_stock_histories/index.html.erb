@@ -1,0 +1,34 @@
+<%# 管理画面：入出庫履歴（見た目はスタッフ担当。クラスは付けない） %>
+
+<h1>履歴</h1>
+
+<p><%= link_to "備品一覧に戻る", admin_items_path %></p>
+
+<% if @stock_histories.empty? %>
+  <p>履歴はまだありません</p>
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>日時</th>
+        <th>スタッフ</th>
+        <th>備品名</th>
+        <th>内容</th>
+        <th>数量</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @stock_histories.each do |history| %>
+        <tr>
+          <td><%= l(history.created_at, format: :long) %></td>
+          <td><%= history.staff.name %></td>
+          <td><%= history.item.name %></td>
+          <td><%= history.quantity.positive? ? "入庫" : "出庫" %></td>
+          <td><%= history.quantity.abs %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @stock_histories, window: 1, outer_window: 1 %>
+<% end %>
