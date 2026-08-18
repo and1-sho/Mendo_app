@@ -6,7 +6,7 @@
     <div class="text-center text-sm font-semibold bg-white border-[1.5px] border-orange-400 text-orange-400 rounded-lg js-button" data-sound="delete"><%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "cursor-pointer py-3 px-4 w-full md:py-4 md:px-8" %></div>
   </div>
 
-  <%= link_to new_admin_item_path, class: "fixed right-6 bottom-8 rounded-full shadow-card js-button",
+  <%= link_to new_admin_item_path, class: "fixed right-6 bottom-8 rounded-full shadow-card z-10 js-button",
       data: { sound: "confirm" } do %>
     <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="32" cy="32" r="32" fill="#FB8C00"/>
@@ -19,19 +19,19 @@
     <%= turbo_frame_tag "items", class: "grid justify-self-center w-full" do %>
       <table class="hidden md:inline-block md:w-[770px] md:m-auto lg:w-[946px]">
         <thead class="inline-block w-full mb-4 text-[15px] tracking-[0.04em] leading-[1.4]">
-          <tr class="w-full h-full bg-white rounded-lg min-h-16 grid grid-cols-[66px_100px_170px_70px_95px_100px_100px] gap-2 pl-5 text-left items-center lg:grid-cols-[66px_120px_220px_70px_130px_160px_111px] lg:h-18">
+          <tr class="w-full h-full bg-white rounded-lg min-h-16 grid grid-cols-[66px_100px_170px_70px_95px_70px_130px] gap-2 pl-5 text-left items-center lg:grid-cols-[66px_120px_220px_70px_130px_130px_141px] lg:h-18">
             <th>商品番号</th>
             <th></th>
             <th>備品名</th>
             <th>在庫数</th>
             <th>注文<br class="lg:hidden">トリガー数</th>
-            <th>目標補充数</th>
+            <th>目標<br class="lg:hidden">補充数</th>
             <th>操作</th>
           </tr>
         </thead>
         <tbody class="grid gap-y-4">
           <% @items.each do |item| %>
-            <tr class="w-full h-16 bg-white min-h-16 tracking-[0.08em] grid grid-cols-[66px_100px_170px_70px_95px_100px_100px] gap-2 pl-5 items-center rounded-lg shadow-card lg:grid-cols-[66px_120px_220px_70px_130px_160px_111px] lg:h-18">
+            <tr class="w-full h-16 bg-white min-h-16 tracking-[0.08em] grid grid-cols-[66px_100px_170px_70px_95px_70px_130px] gap-2 pl-5 items-center rounded-lg shadow-card lg:grid-cols-[66px_120px_220px_70px_130px_130px_141px] lg:h-18">
               <td><%= item.item_code %></td>
               <td class="w-21 h-full bg-neutral-300 overflow-hidden lg:w-[100px]">
                 <% if item.image_displayable? %>
@@ -43,8 +43,18 @@
               <td><%= item.order_trigger %></td>
               <td><%= item.reorder_quantity %></td>
 
-              <td class="flex gap-x-5 items-center">
-                <%= link_to "入庫", new_admin_item_stock_receipt_path(item), data: { turbo_frame: "_top" } %>
+              <td class="flex gap-x-[18px] items-center lg:gap-x-5">
+                <%= link_to new_admin_item_stock_receipt_path(item), class: "icon-button js-button", data: { sound: "confirm", turbo_frame: "_top" } do %>
+                  <svg width="30" height="26" viewBox="0 0 226 197" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M218.5 103.395V23.6545C218.5 22.6482 217.752 21.7987 216.754 21.6707L83.0885 4.53408C82.376 4.44274 81.6521 4.54493 80.9927 4.82994L5.70644 37.373C4.97413 37.6896 4.5 38.4111 4.5 39.2089L4.5 158.636C4.5 159.642 5.2464 160.491 6.24351 160.62L120.5 175.395" stroke="black" stroke-width="9" stroke-linecap="round"/>
+                  <path d="M5 38.3945L155 56.3945L217.5 23.3945" stroke="black" stroke-width="9" stroke-linecap="round"/>
+                  <path d="M155 56.3945V91.3945" stroke="black" stroke-width="9" stroke-linecap="round"/>
+                  <path d="M132 11.8945L65 45.3945V81.9351C65 82.6378 65.7057 83.1214 66.361 82.8677L80.5 77.3945L97.0528 85.6709C97.7177 86.0034 98.5 85.5199 98.5 84.7765V49.8945L165.5 15.3945" stroke="black" stroke-width="9" stroke-linecap="round"/>
+                  <circle cx="175.5" cy="146.395" r="45.5" stroke="black" stroke-width="9"/>
+                  <path d="M152.5 146.395H197.5" stroke="black" stroke-width="9" stroke-linecap="round"/>
+                  <path d="M175.5 168.395V123.395" stroke="black" stroke-width="9" stroke-linecap="round"/>
+                  </svg>
+                <% end %>
 
                 <%= link_to edit_admin_item_path(item), class: "icon-button js-button", data: { sound: "confirm", turbo_frame: "_top" } do %>
                   <svg width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,7 +67,7 @@
                       method: :delete,
                       form: { data: { turbo_confirm: "削除してよいですか？" } },
                       data: { sound: "delete" },
-                      class: "cursor-pointer icon-button flex items-center js-button" do %>
+                      class: "cursor-pointer icon-button flex items-center -ml-[4px] js-button  lg:-ml-[2px]" do %>
                   <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 3.75H8V2.75C8 1.64543 8.89543 0.75 10 0.75H13C14.1046 0.75 15 1.64543 15 2.75V3.75H23.5" stroke="#151515" stroke-width="1.5"/>
                     <path d="M2 5.75L3.80232 21.9709C3.91486 22.9837 4.77099 23.75 5.79009 23.75H17.2586C18.2568 23.75 19.1022 23.0139 19.2396 22.0251L21.5 5.75" stroke="#151515" stroke-width="1.5"/>
@@ -73,7 +83,7 @@
 
       <div class="md:hidden w-[360px] pt-4 mx-auto">
         <% @items.each do |item| %>
-          <div class="bg-white mb-4 p-4 shadow-card rounded-lg">
+          <div class="bg-white mb-4 p-4 shadow-card rounded-lg relative">
             <div class="grid grid-cols-2">
               <div class="rounded-lg relative w-36 h-36 bg-neutral-300 overflow-hidden lg:w-[100px]">
                 <% if item.image_displayable? %>
@@ -93,18 +103,22 @@
             </div>
 
             <div class="grid grid-cols-2 gap-x-2 items-center justify-between mt-4 tracking-widest">
-              <%= link_to "入庫する", new_admin_item_stock_receipt_path(item) %>
-              <%= link_to edit_admin_item_path(item), class: "text-sm font-semibold icon-button bg-orange-400 py-3 text-white text-center rounded-lg js-button", data: { sound: "confirm", turbo_frame: "_top" } do %>
-                <span class="">編集する</span>
-              <% end %>
+              <%= link_to "入庫する", new_admin_item_stock_receipt_path(item), class: "text-sm font-semibold icon-button bg-orange-400 py-3 text-white text-center rounded-lg js-button", data: { sound: "confirm", turbo_frame: "_top" } %>
               <%= button_to admin_item_path(item),
                 method: :delete,
                 form: { data: { turbo_confirm: "削除してよいですか？" } },
                 data: { sound: "delete" },
                 class: "text-sm font-semibold icon-button bg-white py-[10px] text-accent border-[1.5px] border-orange-400 w-full rounded-lg js-button" do %>
-                <span class="">削除する</span>
+                <span>削除する</span>
               <% end %>
             </div>
+
+            <%= link_to edit_admin_item_path(item), class: "absolute top-[14px] right-[14px]  js-button", data: { sound: "confirm", turbo_frame: "_top" } do %>
+              <svg width="24" height="23" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.25 3.34766H2.75C1.64543 3.34766 0.75 4.24309 0.75 5.34766V21.8477C0.75 22.9522 1.64543 23.8477 2.75 23.8477H20.75C21.8546 23.8477 22.75 22.9522 22.75 21.8477V15.3477" stroke="#000000" stroke-width="1.5"/>
+                <path d="M8.75 12.3477L12.25 16.3477M18.663 2.84766L20.5431 1.0308C20.9354 0.651634 21.5593 0.656966 21.9451 1.04278L24.0429 3.14055C24.4334 3.53107 24.4334 4.16424 24.0429 4.55476L22.0403 6.55738L12.25 16.3477L7.25 17.3477L8 14.8477L8.75 12.3477L18.663 2.84766ZM22.0403 6.55738L18.663 2.84766" stroke="#000000" stroke-width="1.5"/>
+              </svg>
+            <% end %>
           </div>
         <% end %>
       </div>
