@@ -3,6 +3,11 @@
 <h1>入庫</h1>
 
 <p>商品番号: <%= @item.item_code %></p>
+<div class="w-21 h-full bg-neutral-300 overflow-hidden lg:w-[100px]">
+  <% if @item.image_displayable? %>
+    <%= image_tag @item.image, width: 60, class: "w-full h-full object-cover" %>
+  <% end %>
+</div>
 <p>備品名: <%= @item.name %></p>
 <p>現在の在庫数: <%= @item.stock %></p>
 
