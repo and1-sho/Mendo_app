@@ -1,20 +1,46 @@
 <%# 管理画面：入庫（見た目はスタッフ担当。クラスは付けない） %>
 
-<h1>入庫</h1>
+<div class="px-8 md:px-0 md:w-[568px] mx-auto relative pb-16 lg:w-[1000px] lg:pb-8 xl:w-[1020px]">
 
-<p>商品番号: <%= @item.item_code %></p>
-<p>備品名: <%= @item.name %></p>
-<p>現在の在庫数: <%= @item.stock %></p>
+  <h1 class="text-[28px] pt-20 pb-14 text-center md:text-4xl font-extrabold tracking-widest md:pt-28 md:pb-22 lg:pt-24 lg:pb-23 xl:pb-26">入庫</h1>
 
-<%= form_with url: admin_item_stock_receipt_path(@item), method: :post do |f| %>
-  <div>
-    <%= f.label :quantity, "入庫数" %>
-    <%= f.number_field :quantity, min: 1, step: 1, required: true, autofocus: true %>
+  <div class="lg:flex lg:w-[1020px] lg:gap-16 xl:gap-20">
+    <div class="relative w-full h-65 bg-neutral-200 overflow-hidden rounded-2xl md:h-90 lg:w-100 lg:h-80">
+      <p class="absolute top-2 left-2 text-orange-400 bg-white border-[2.5px] md:border-[3px] border-orange-400 min-w-25 md:min-w-35 text-center px-4 py-1 text-3xl rounded-xl md:px-3 md:py-2 md:text-4xl font-semibold md:rounded-xl xl:tracking-[0.06em] xl:text-3xl"><%= @item.item_code %></p>
+      <% if @item.image_displayable? %>
+        <%= image_tag @item.image, class: "w-full h-full object-cover" %>
+      <% else %>
+        <div class="grid h-full place-content-center">
+          <p class="text-2xl md:text-3xl font-semibold tracking-[0.2em] opacity-30">画像なし</p>
+        </div>
+      <% end %>
+    </div>
+
+    <div>
+      <p class="text-[20px] font-extrabold tracking-widest mt-7 mb-10 md:mt-10 md:mb-12 md:text-[24px] lg:mt-13 lg:mb-17"><%= @item.name %></p>
+
+      <div class="flex items-center gap-[1.9%] md:gap-8">
+        <div class="w-[85px] md:w-[100px]">
+          <span class="text-[12px] text-center block font-semibold tracking-[0.02em]  md:text-sm">現在の在庫数</span><br>
+          <span class="inline-block relative -top-4 h-[65px] py-[14px] px-2 w-full min-w-9 border-[1px] font-semibold text-[24px] border-neutral-300 text-center rounded-[10px] tracking-[0.1em] md:text-[26px] md:h-[75px] md:py-[16px]"><%= @item.stock %></span>
+        </div>
+
+        <div class="text-[40px] mt-2 text-neutral-300 font-medium md:text-[50px] md:mt-3">＋</div>
+      </div>
+
+      <%= form_with url: admin_item_stock_receipt_path(@item), method: :post do |f| %>
+        <div class="w-[48%] absolute bottom-[260px] right-[32px] md:w-[60%] md:bottom-[206px] md:right-0 lg:w-[320px] lg:bottom-[240px] xl:bottom-[255px]">
+          <%= f.label :quantity, "入庫数", class: "block mb-[7px] text-[14px] font-semibold tracking-[0.02em] md:mb-2 md:text-[16px]" %>
+          <%= f.number_field :quantity, min: 1, step: 1, required: true, autofocus: true, class: "h-[65px] py-[16px] px-4 border-[1px] font-semibold text-[26px] text-orange-400 text-center border-neutral-300 w-full rounded-[10px] tracking-[0.1em] md:h-[75px] md:text-[28px]" %>
+        </div>
+
+        <div class="mt-7 md:mt-0">
+          <%= f.submit "入庫する", class: "cursor-pointer text-[19px] w-full md:absolute md:right-0 md:bottom-16 md:w-[270px] h-[68px] rounded-lg md:text-xl tracking-widest bg-orange-400 font-extrabold text-white lg:w-[308px] lg:bottom-8 lg:right-[176px] xl:right-[190px] js-button", data: { sound: "confirm" } %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
-  <div>
-    <%= f.submit "入庫する" %>
-  </div>
-<% end %>
-
-<p><%= link_to "備品一覧に戻る", admin_items_path %></p>
+  <p class="lg:w-[648px] lg:mx-auto"><%= link_to "備品一覧に戻る", admin_items_path, class: "cursor-pointer text-[19px] w-full mt-4 md:mt-15 md:w-[270px] h-[68px] rounded-lg md:text-xl tracking-widest bg-white border-[2px] border-orange-400 text-orange-400 font-extrabold grid place-items-center lg:w-[308px] lg:mt-20 xl:mt-24 js-button",
+      data: { sound: "delete" } %></p>
+</div>
