@@ -4,6 +4,18 @@ class Item < ApplicationRecord
 
   has_many :stock_histories, dependent: :restrict_with_exception
 
+  # 論理削除：discarded_at に日時が入っていれば削除済み
+  scope :kept, -> { where(discarded_at: nil) }
+  scope :discarded, -> { where.not(discarded_at: nil) }
+
+  def discard
+    update(discarded_at: Time.current)
+  end
+
+  def discarded?
+    discarded_at.present?
+  end
+
   # --- バリデーション ---
 
   # 商品番号：必須・数値・重複禁止

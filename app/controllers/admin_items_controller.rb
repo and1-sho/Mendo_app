@@ -2,9 +2,9 @@ class AdminItemsController < ApplicationController
   # 編集・更新・削除のアクションで事前に備品を取得しておく
   before_action :set_item, only: %i[edit update destroy]
 
-  # 一覧画面
+  # 一覧画面（削除済みは表示しない）
   def index
-    @items = Item.order(:item_code).page(params[:page]).per(20)
+    @items = Item.kept.order(:item_code).page(params[:page]).per(20)
   end
 
   # 登録画面（フォームを表示）
@@ -35,10 +35,9 @@ class AdminItemsController < ApplicationController
     end
   end
 
-  # 削除処理
-  # status: :see_other … DELETE のあとブラウザが同じ DELETE でリダイレクトしてしまうのを防ぐ
+  # 削除処理（論理削除：discarded_at に日時を入れて非表示にする）
   def destroy
-    @item.destroy
+    @item.discard
     redirect_to admin_items_path, notice: t("flash.destroyed", model: "備品"), status: :see_other
   end
 
