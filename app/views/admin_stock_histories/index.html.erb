@@ -1,34 +1,38 @@
 <%# 管理画面：入出庫履歴（見た目はスタッフ担当。クラスは付けない） %>
 
-<h1>履歴</h1>
+<div class="relative min-h-svh">
+  <h1 class="text-center text-[28px] pt-30 pb-18 font-extrabold tracking-widest md:text-4xl md:pt-28 md:pb-22 lg:pt-20 lg:pb-18">履歴一覧</h1>
 
-<p><%= link_to "備品一覧に戻る", admin_items_path %></p>
+  <%= render "admin_items/list_tabs" %>
 
-<% if @stock_histories.empty? %>
-  <p>履歴はまだありません</p>
-<% else %>
-  <table>
-    <thead>
-      <tr>
-        <th>日時</th>
-        <th>スタッフ</th>
-        <th>備品名</th>
-        <th>内容</th>
-        <th>数量</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @stock_histories.each do |history| %>
+  <p><%= link_to "備品一覧に戻る", admin_items_path %></p>
+
+  <% if @stock_histories.empty? %>
+    <p>履歴はまだありません</p>
+  <% else %>
+    <table>
+      <thead>
         <tr>
-          <td><%= l(history.created_at, format: :long) %></td>
-          <td><%= history.staff.name %></td>
-          <td><%= history.item.name %></td>
-          <td><%= history.quantity.positive? ? "入庫" : "出庫" %></td>
-          <td><%= history.quantity.abs %></td>
+          <th>日時</th>
+          <th>スタッフ</th>
+          <th>備品名</th>
+          <th>内容</th>
+          <th>数量</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @stock_histories.each do |history| %>
+          <tr>
+            <td><%= l(history.created_at, format: :long) %></td>
+            <td><%= history.staff.name %></td>
+            <td><%= history.item.name %></td>
+            <td><%= history.quantity.positive? ? "入庫" : "出庫" %></td>
+            <td><%= history.quantity.abs %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-  <%= paginate @stock_histories, window: 1, outer_window: 1 %>
-<% end %>
+    <%= paginate @stock_histories, window: 1, outer_window: 1 %>
+  <% end %>
+</div>
