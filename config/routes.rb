@@ -40,4 +40,7 @@ Rails.application.routes.draw do
 
   # 管理画面：入出庫履歴
   resources :admin_stock_histories, path: "admin/stock_histories", only: %i[index]
+
+  # 管理画面：在庫一覧（見る専用。設定・編集は備品一覧側）
+  resources :admin_stocks, path: "admin/stocks", only: %i[index show]
 end
