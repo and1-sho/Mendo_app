@@ -5,6 +5,8 @@
     <%= link_to "履歴", admin_stock_histories_path %>
   </p>
 
+  <%= render "list_tabs" %>
+
   <div class="absolute top-3 right-3 grid grid-cols-2 gap-2 tracking-widest">
     <div class="text-center text-sm font-semibold bg-orange-400 text-white rounded-lg js-button" data-sound="delete"><%= link_to "トップに戻る", root_path, class: "cursor-pointer block py-[14px] px-5 md:py-4 md:pt-[18px] md:px-8" %></div>
     <div class="text-center text-sm font-semibold bg-white border-[1.5px] border-orange-400 text-orange-400 rounded-lg js-button" data-sound="delete"><%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "cursor-pointer py-3 px-4 w-full md:py-4 md:px-8" %></div>

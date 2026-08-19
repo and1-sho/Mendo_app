@@ -1,38 +1,65 @@
 <%# 管理画面：入出庫履歴（見た目はスタッフ担当。クラスは付けない） %>
 
 <div class="relative min-h-svh">
-  <h1 class="text-center text-[28px] pt-30 pb-18 font-extrabold tracking-widest md:text-4xl md:pt-28 md:pb-22 lg:pt-20 lg:pb-18">履歴一覧</h1>
+  <h1 class="text-center text-[28px] pt-22 pb-18 font-extrabold tracking-widest md:text-4xl md:pt-28 md:pb-22 lg:pt-20 lg:pb-18">履歴</h1>
 
   <%= render "admin_items/list_tabs" %>
 
-  <p><%= link_to "備品一覧に戻る", admin_items_path %></p>
+  <%# <p><%= link_to "備品一覧に戻る", admin_items_path %></p>
 
-  <% if @stock_histories.empty? %>
-    <p>履歴はまだありません</p>
-  <% else %>
-    <table>
-      <thead>
-        <tr>
-          <th>日時</th>
-          <th>スタッフ</th>
-          <th>備品名</th>
-          <th>内容</th>
-          <th>数量</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @stock_histories.each do |history| %>
-          <tr>
-            <td><%= l(history.created_at, format: :long) %></td>
-            <td><%= history.staff.name %></td>
-            <td><%= history.item.name %></td>
-            <td><%= history.quantity.positive? ? "入庫" : "出庫" %></td>
-            <td><%= history.quantity.abs %></td>
+  <article class="w-screen h-full pt-10 pb-22 bg-neutral-100 grid justify-self-center w-full">
+    <% if @stock_histories.empty? %>
+      <p class="text-center sm:text-lg sm:mt-14 sm:mb-8">履歴はまだありません</p>
+    <% else %>
+      <table class="hidden md:inline-block md:w-[770px] md:m-auto lg:w-[946px]">
+        <thead class="inline-block w-full mb-4 text-[15px] tracking-[0.04em] leading-[1.4]">
+          <tr class="w-full h-full bg-white rounded-lg min-h-16 grid grid-cols-[190px_140px_234px_85px_50px] gap-2 pl-5 text-left items-center lg:grid-cols-[210px_180px_324px_95px_70px] lg:h-18">
+            <th>日時</th>
+            <th>スタッフ</th>
+            <th>備品名</th>
+            <th class="ml-[10px]">内容</th>
+            <th>数量</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody class="grid gap-y-4">
+          <% @stock_histories.each do |history| %>
+            <tr class="w-full h-16 bg-white min-h-16 tracking-[0.08em] grid grid-cols-[190px_140px_234px_85px_50px] gap-2 pl-5 items-center rounded-lg shadow-card lg:grid-cols-[210px_180px_324px_95px_70px] lg:h-18">
+              <td><%= l(history.created_at, format: :long) %></td>
+              <td><%= history.staff.name %></td>
+              <td><%= history.item.name %></td>
+              <td>
+                <span class="<%= history.quantity.positive? ? 'text-success bg-lime-100' : 'text-error bg-orange-100' %> px-[10px] py-1 rounded-full text-sm font-semibold">
+                <%= history.quantity.positive? ? "入庫" : "出庫" %>
+                </span>
+              </td>
+              <td><%= history.quantity.abs %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-    <%= paginate @stock_histories, window: 1, outer_window: 1 %>
-  <% end %>
+      <article class="md:hidden w-[360px] pt-4 mx-auto">
+        <% @stock_histories.each do |history| %>
+          <div class="bg-white mb-4 p-4 shadow-card rounded-lg relative">
+            <p class="text-sm"><%= l(history.created_at, format: :long) %></p>
+            <p class="my-6 text-lg font-medium"><%= history.item.name %></p>
+            <div class="flex mb-6">
+              <p class="mr-2">
+                <span class="<%= history.quantity.positive? ? 'text-success bg-lime-100' : 'text-error bg-orange-100' %> px-[10px] py-1 rounded-full text-sm font-semibold">
+                <%= history.quantity.positive? ? "入庫" : "出庫" %>
+                </span>
+              </p>
+              <p><%= history.quantity.abs %></p>
+            </div>
+            <hr style="height: 1px; background-color: #ccc; border: none;">
+            <p class="text-right mt-2 text-sm"><span class="text-xs">スタッフ</span>：<%= history.staff.name %></p>
+          </div>
+        <% end %>
+      </article>
+
+      <div class="pt-18 items-pagination">
+        <%= paginate @stock_histories, window: 1, outer_window: 1 %>
+      </div>
+    <% end %>
+  </article>
 </div>
