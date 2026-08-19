@@ -1,0 +1,37 @@
+<%# 管理画面：在庫一覧（見た目はスタッフ担当。クラスは付けない） %>
+
+<h1>在庫一覧</h1>
+
+<p>
+  <%= link_to "備品一覧", admin_items_path %>
+  <%= link_to "履歴", admin_stock_histories_path %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>商品番号</th>
+      <th></th>
+      <th>備品名</th>
+      <th>在庫数</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.item_code %></td>
+        <td>
+          <% if item.image_displayable? %>
+            <%= image_tag item.image, width: 60 %>
+          <% end %>
+        </td>
+        <td><%= item.name %></td>
+        <td><%= item.stock %></td>
+        <td><%= link_to "詳細", admin_stock_path(item) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @items, window: 1, outer_window: 1 %>
