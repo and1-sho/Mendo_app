@@ -1,39 +1,59 @@
 <%# 管理画面：在庫一覧（見た目はスタッフ担当。クラスは付けない） %>
 
-<h1>在庫一覧</h1>
+<div class="relative min-h-svh">
 
-<%= render "admin_items/list_tabs" %>
+  <h1 class="text-center text-[28px] pt-22 pb-18 font-extrabold tracking-widest md:text-4xl md:pt-28 md:pb-22 lg:pt-20 lg:pb-18">在庫一覧</h1>
 
-<p>
-  <%= link_to "備品一覧", admin_items_path %>
-  <%= link_to "履歴", admin_stock_histories_path %>
-</p>
+  <%= render "admin_items/list_tabs" %>
 
-<table>
-  <thead>
-    <tr>
-      <th>商品番号</th>
-      <th></th>
-      <th>備品名</th>
-      <th>在庫数</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.item_code %></td>
-        <td>
-          <% if item.image_displayable? %>
-            <%= image_tag item.image, width: 60 %>
-          <% end %>
-        </td>
-        <td><%= item.name %></td>
-        <td><%= item.stock %></td>
-        <td><%= link_to "詳細", admin_stock_path(item) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <article class="w-screen h-full pt-10 pb-22 bg-neutral-100 grid justify-self-center w-full">
+    <table class="hidden md:inline-block md:w-[770px] md:m-auto lg:w-[946px]">
+      <thead class="inline-block w-full mb-4 text-[15px] tracking-[0.04em] leading-[1.4]">
+        <tr class="w-full h-full bg-white rounded-lg min-h-16 grid grid-cols-[90px_120px_334px_100px_60px] gap-2 pl-5 text-left items-center lg:grid-cols-[100px_150px_410px_155px_60px] lg:h-18">
+          <th>商品番号</th>
+          <th></th>
+          <th>備品名</th>
+          <th>在庫数</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="grid gap-y-4">
+        <% @items.each do |item| %>
+          <tr class="w-full h-16 bg-white min-h-16 tracking-[0.08em] grid grid-cols-[90px_120px_334px_100px_60px] gap-2 pl-5 items-center rounded-lg shadow-card lg:grid-cols-[100px_150px_410px_155px_60px] lg:h-18">
+            <td><%= item.item_code %></td>
+            <td class="w-21 h-full bg-neutral-300 overflow-hidden lg:w-[100px]">
+              <% if item.image_displayable? %>
+                <%= image_tag item.image, width: 60, class: "w-full h-full object-cover" %>
+              <% end %>
+            </td>
+            <td class="pr-4"><%= item.name %></td>
+            <td><%= item.stock %></td>
+            <td><%= link_to "詳細", admin_stock_path(item), class: "bg-orange-400 border-[1.5px] border-orange-400 text-white font-semibold text-[14.5px] text-center py-1 px-3 rounded-lg lg:py-[6px] js-button", data: { sound: "confirm" } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-<%= paginate @items, window: 1, outer_window: 1 %>
+    <div class="md:hidden w-[360px] pt-4 mx-auto">
+      <% @items.each do |item| %>
+        <div class="bg-white mb-4 p-4 shadow-card rounded-lg relative grid grid-cols-2">
+          <div class="rounded-lg relative w-36 h-36 bg-neutral-300 overflow-hidden lg:w-[100px]">
+            <% if item.image_displayable? %>
+              <%= image_tag item.image, width: 60, class: "w-full h-full object-cover" %>
+            <% end %>
+          </div>
+          <div>
+            <p class="text-[18px]"><%= item.item_code %></p>
+            <p class="py-[6px] leading-[1.2] mb-2"><%= item.name %></p>
+            <p class="flex justify-between text-[16px] leading-[1.55] items-center"><span class="text-[13px]">在庫数</span><span class="text-accent font-medium"><%= item.stock %></span></p>
+            <%= link_to "詳細", admin_stock_path(item), class: "inline-block w-full mt-[14px] text-sm font-semibold icon-button bg-orange-400 p-[10px] text-white tracking-[0.15em] text-center rounded-lg js-button", data: { sound: "confirm" } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="pt-18 items-pagination">
+      <%= paginate @items, window: 1, outer_window: 1 %>
+    </div>
+  </article>
+</div>
