@@ -35,17 +35,21 @@
     </table>
 
     <div class="md:hidden w-[360px] pt-4 mx-auto">
-      <div class="bg-white mb-4 p-4 shadow-card rounded-lg relative">
-        <p><%= item.item_code %></p>
-        <p class="w-21 h-full bg-neutral-300 overflow-hidden lg:w-[100px]">
-          <% if item.image_displayable? %>
-            <%= image_tag item.image, width: 60, class: "w-full h-full object-cover" %>
-          <% end %>
-        </p>
-        <p class="pr-4"><%= item.name %></p>
-        <p><%= item.stock %></p>
-        <p><%= link_to "詳細", admin_stock_path(item), class: "bg-orange-400 border-[1.5px] border-orange-400 text-white font-semibold text-[14.5px] text-center py-1 px-3 rounded-lg lg:py-[6px] js-button", data: { sound: "confirm" } %></p>
-      </div>
+      <% @items.each do |item| %>
+        <div class="bg-white mb-4 p-4 shadow-card rounded-lg relative grid grid-cols-2">
+          <div class="rounded-lg relative w-36 h-36 bg-neutral-300 overflow-hidden lg:w-[100px]">
+            <% if item.image_displayable? %>
+              <%= image_tag item.image, width: 60, class: "w-full h-full object-cover" %>
+            <% end %>
+          </div>
+          <div>
+            <p class="text-[18px]"><%= item.item_code %></p>
+            <p class="py-[6px] leading-[1.2] mb-2"><%= item.name %></p>
+            <p class="flex justify-between text-[16px] leading-[1.55] items-center"><span class="text-[13px]">在庫数</span><span class="text-accent font-medium"><%= item.stock %></span></p>
+            <%= link_to "詳細", admin_stock_path(item), class: "inline-block w-full mt-[14px] text-sm font-semibold icon-button bg-orange-400 p-[10px] text-white tracking-[0.15em] text-center rounded-lg js-button", data: { sound: "confirm" } %>
+          </div>
+        </div>
+      <% end %>
     </div>
 
     <div class="pt-18 items-pagination">
