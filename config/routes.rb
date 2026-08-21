@@ -43,4 +43,11 @@ Rails.application.routes.draw do
 
   # 管理画面：在庫一覧（見る専用。設定・編集は備品一覧側）
   resources :admin_stocks, path: "admin/stocks", only: %i[index show]
+
+  # 管理画面：削除済み備品の一覧・復元
+  resources :admin_discarded_items, path: "admin/discarded_items", only: %i[index] do
+    member do
+      patch :restore
+    end
+  end
 end

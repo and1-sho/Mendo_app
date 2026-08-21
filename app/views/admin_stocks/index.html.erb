@@ -5,6 +5,7 @@
   <h1 class="text-center text-[28px] pt-22 pb-18 font-extrabold tracking-widest md:text-4xl md:pt-28 md:pb-22 lg:pt-20 lg:pb-18">在庫一覧</h1>
 
   <%= render "admin_items/list_tabs" %>
+  <p><%= link_to "削除済み", admin_discarded_items_path %></p>
 
   <article class="w-screen h-full pt-10 pb-22 bg-neutral-100 grid justify-self-center w-full">
     <table class="hidden md:inline-block md:w-[770px] md:m-auto lg:w-[946px]">

@@ -12,6 +12,11 @@ class Item < ApplicationRecord
     update(discarded_at: Time.current)
   end
 
+  # 論理削除を取り消して一覧に戻す
+  def undiscard
+    update(discarded_at: nil)
+  end
+
   def discarded?
     discarded_at.present?
   end
