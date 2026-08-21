@@ -5,6 +5,6 @@ class AdminStocksController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    @item = Item.kept.find(params[:id])
   end
 end

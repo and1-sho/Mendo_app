@@ -43,9 +43,9 @@ class AdminItemsController < ApplicationController
 
   private
 
-  # URLの :id から備品を取得する
+  # URLの :id から未削除の備品を取得する
   def set_item
-    @item = Item.find(params[:id])
+    @item = Item.kept.find(params[:id])
   end
 
   # フォームから受け取るパラメータを制限する（セキュリティのため）

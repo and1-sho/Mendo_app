@@ -2,6 +2,7 @@
   <h1 class="text-center text-[28px] pt-30 pb-18 font-extrabold tracking-widest md:text-4xl md:pt-28 md:pb-22 lg:pt-20 lg:pb-18">備品一覧</h1>
 
   <%= render "list_tabs" %>
+  <p><%= link_to "削除済み", admin_discarded_items_path %></p>
 
   <div class="absolute top-3 right-3 grid grid-cols-2 gap-2 tracking-widest">
     <div class="text-center text-sm font-semibold bg-orange-400 text-white rounded-lg js-button" data-sound="delete"><%= link_to "トップに戻る", root_path, class: "cursor-pointer block py-[14px] px-5 md:py-4 md:pt-[18px] md:px-8" %></div>
