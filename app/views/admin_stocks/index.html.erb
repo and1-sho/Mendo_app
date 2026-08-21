@@ -1,11 +1,14 @@
 <%# 管理画面：在庫一覧（見た目はスタッフ担当。クラスは付けない） %>
 
 <div class="relative min-h-svh">
+  <div class="absolute top-3 right-3 grid grid-cols-2 gap-2 tracking-widest">
+    <div class="text-center text-sm font-semibold bg-orange-400 text-white rounded-lg js-button" data-sound="delete"><%= link_to "トップに戻る", root_path, class: "cursor-pointer block py-[14px] px-5 md:py-4 md:pt-[18px] md:px-8" %></div>
+    <div class="text-center text-sm font-semibold bg-white border-[1.5px] border-orange-400 text-orange-400 rounded-lg js-button" data-sound="delete"><%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "cursor-pointer py-3 px-4 w-full md:py-4 md:px-8" %></div>
+  </div>
 
-  <h1 class="text-center text-[28px] pt-22 pb-18 font-extrabold tracking-widest md:text-4xl md:pt-28 md:pb-22 lg:pt-20 lg:pb-18">在庫一覧</h1>
+  <h1 class="text-center text-[28px] pt-30 pb-18 font-extrabold tracking-widest md:text-4xl md:pt-28 md:pb-22 lg:pt-20 lg:pb-18">在庫一覧</h1>
 
   <%= render "admin_items/list_tabs" %>
-  <p><%= link_to "削除済み", admin_discarded_items_path %></p>
 
   <%= link_to new_admin_item_path, class: "fixed right-6 bottom-8 rounded-full shadow-card z-10 js-button",
       data: { sound: "confirm" } do %>

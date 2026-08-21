@@ -1,16 +1,16 @@
 <div class="w-full max-w-[360px] md:max-w-[770px] lg:max-w-[946px] mx-auto mb-8">
   <div class="grid grid-cols-3 gap-2">
 
-    <%= link_to "備品一覧", admin_items_path,
-      class: "text-center py-3 rounded-lg font-semibold #{current_page?(admin_items_path) ? 'bg-orange-400 text-white' : 'bg-white border-[1.5px] border-orange-400 text-orange-400 js-button'}",
-      data: { sound: "confirm" } %>
-
     <%= link_to "在庫一覧", admin_stocks_path,
       class: "text-center py-3 rounded-lg font-semibold #{current_page?(admin_stocks_path) ? 'bg-orange-400 text-white' : 'bg-white border-[1.5px] border-orange-400 text-orange-400 js-button'}",
       data: { sound: "confirm" } %>
 
     <%= link_to "履歴", admin_stock_histories_path,
       class: "text-center py-3 rounded-lg font-semibold #{current_page?(admin_stock_histories_path) ? 'bg-orange-400 text-white' : 'bg-white border-[1.5px] border-orange-400 text-orange-400 js-button'}",
+      data: { sound: "confirm" } %>
+
+    <%= link_to "削除済み", admin_discarded_items_path,
+      class: "text-center py-3 rounded-lg font-semibold #{current_page?(admin_discarded_items_path) ? 'bg-orange-400 text-white' : 'bg-white border-[1.5px] border-orange-400 text-orange-400 js-button'}",
       data: { sound: "confirm" } %>
 
   </div>
