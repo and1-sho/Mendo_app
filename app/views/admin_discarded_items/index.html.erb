@@ -1,45 +1,56 @@
 <%# 管理画面：削除済み備品（見た目はスタッフ担当。クラスは付けない） %>
+<div class="relative min-h-svh">
+  <div class="absolute top-3 right-3 tracking-widest">
+    <div class="text-center text-sm font-semibold bg-orange-400 text-white rounded-lg js-button" data-sound="delete"><%= link_to "トップに戻る", root_path, class: "cursor-pointer block py-[14px] px-5 md:py-4 md:pt-[18px] md:px-8" %></div>
+  </div>
 
-<h1>削除済み</h1>
+  <h1 class="text-center text-[28px] pt-30 pb-18 font-extrabold tracking-widest md:text-4xl md:pt-28 md:pb-22 lg:pt-20 lg:pb-18">削除済み</h1>
 
-<p>
-  <%= link_to "在庫一覧に戻る", admin_stocks_path %>
-  <%= link_to "備品一覧に戻る", admin_items_path %>
-</p>
+  <%= render "admin_items/list_tabs" %>
 
-<% if @items.empty? %>
-  <p>削除済みの備品はありません</p>
-<% else %>
-  <table>
-    <thead>
-      <tr>
-        <th>商品番号</th>
-        <th></th>
-        <th>備品名</th>
-        <th>在庫数</th>
-        <th>削除日時</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @items.each do |item| %>
+  <%= link_to new_admin_item_path, class: "fixed right-6 bottom-8 rounded-full shadow-card z-10 js-button",
+      data: { sound: "confirm" } do %>
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="32" fill="#FB8C00"/>
+      <path d="M22 32H42" stroke="white" stroke-width="3"/>
+      <path d="M32 42V22" stroke="white" stroke-width="3"/>
+    </svg>
+  <% end %>
+
+  <% if @items.empty? %>
+    <p>削除済みの備品はありません</p>
+  <% else %>
+    <table>
+      <thead>
         <tr>
-          <td><%= item.item_code %></td>
-          <td>
-            <% if item.image_displayable? %>
-              <%= image_tag item.image, width: 60 %>
-            <% end %>
-          </td>
-          <td><%= item.name %></td>
-          <td><%= item.stock %></td>
-          <td><%= l(item.discarded_at, format: :long) %></td>
-          <td>
-            <%= button_to "復元する", restore_admin_discarded_item_path(item), method: :patch %>
-          </td>
+          <th>商品番号</th>
+          <th></th>
+          <th>備品名</th>
+          <th>在庫数</th>
+          <th>削除日時</th>
+          <th></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= item.item_code %></td>
+            <td>
+              <% if item.image_displayable? %>
+                <%= image_tag item.image, width: 60 %>
+              <% end %>
+            </td>
+            <td><%= item.name %></td>
+            <td><%= item.stock %></td>
+            <td><%= l(item.discarded_at, format: :long) %></td>
+            <td>
+              <%= button_to "復元する", restore_admin_discarded_item_path(item), method: :patch %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-  <%= paginate @items, window: 1, outer_window: 1 %>
-<% end %>
+    <%= paginate @items, window: 1, outer_window: 1 %>
+  <% end %>
+</div>

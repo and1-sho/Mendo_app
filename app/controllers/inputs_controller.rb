@@ -9,7 +9,7 @@ class InputsController < ApplicationController
 
     # 9999 が入力されたら管理画面へ
     if code == 9999
-      redirect_to admin_items_path
+      redirect_to admin_stocks_path
       return
     end
 
