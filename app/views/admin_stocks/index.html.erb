@@ -66,5 +66,5 @@
       <%= paginate @items, window: 1, outer_window: 1 %>
     </div>
   </article>
-  <%= turbo_frame_tag "modal" %>
+  <%= turbo_frame_tag "modal", data: { controller: "modal" } %>
 </div>
