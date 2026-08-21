@@ -1,0 +1,11 @@
+<%= turbo_frame_tag "modal" do %>
+  <div class="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4" data-controller="modal-content" data-action="click->modal#backdropClose">
+    <div class="relative">
+      <button type="button"
+        class="cursor-pointer absolute -top-10 right-0 z-10 w-8 h-8 rounded-full bg-white shadow grid place-items-center text-xl font-semibold md:-top-11 md:w-9 md:h-9 md:text-2xl js-button" data-action="click->modal#close" data-sound="click">×
+      </button>
+
+      <%= render "item_detail", item: item %>
+    </div>
+  </div>
+<% end %>

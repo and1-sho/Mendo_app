@@ -7,6 +7,15 @@
   <%= render "admin_items/list_tabs" %>
   <p><%= link_to "削除済み", admin_discarded_items_path %></p>
 
+  <%= link_to new_admin_item_path, class: "fixed right-6 bottom-8 rounded-full shadow-card z-10 js-button",
+      data: { sound: "confirm" } do %>
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="32" fill="#FB8C00"/>
+      <path d="M22 32H42" stroke="white" stroke-width="3"/>
+      <path d="M32 42V22" stroke="white" stroke-width="3"/>
+    </svg>
+  <% end %>
+
   <article class="w-screen h-full pt-10 pb-22 bg-neutral-100 grid justify-self-center w-full">
     <table class="hidden md:inline-block md:w-[770px] md:m-auto lg:w-[946px]">
       <thead class="inline-block w-full mb-4 text-[15px] tracking-[0.04em] leading-[1.4]">
@@ -29,7 +38,7 @@
             </td>
             <td class="pr-4"><%= item.name %></td>
             <td><%= item.stock %></td>
-            <td><%= link_to "詳細", admin_stock_path(item), class: "bg-orange-400 border-[1.5px] border-orange-400 text-white font-semibold text-[14.5px] text-center py-1 px-3 rounded-lg lg:py-[6px] js-button", data: { sound: "confirm" } %></td>
+            <td><%= link_to "詳細", admin_stock_path(item), class: "bg-orange-400 border-[1.5px] border-orange-400 text-white font-semibold text-[14.5px] text-center py-1 px-3 rounded-lg lg:py-[6px] js-button", data: { turbo_frame: "modal", sound: "confirm" } %></td>
           </tr>
         <% end %>
       </tbody>
@@ -47,7 +56,7 @@
             <p class="text-[18px]"><%= item.item_code %></p>
             <p class="py-[6px] leading-[1.2] mb-2"><%= item.name %></p>
             <p class="flex justify-between text-[16px] leading-[1.55] items-center"><span class="text-[13px]">在庫数</span><span class="text-accent font-medium"><%= item.stock %></span></p>
-            <%= link_to "詳細", admin_stock_path(item), class: "inline-block w-full mt-[14px] text-sm font-semibold icon-button bg-orange-400 p-[10px] text-white tracking-[0.15em] text-center rounded-lg js-button", data: { sound: "confirm" } %>
+            <%= link_to "詳細", admin_stock_path(item), class: "inline-block w-full mt-[14px] text-sm font-semibold icon-button bg-orange-400 p-[10px] text-white tracking-[0.15em] text-center rounded-lg js-button", data: { turbo_frame: "modal", sound: "confirm" } %>
           </div>
         </div>
       <% end %>
@@ -57,4 +66,5 @@
       <%= paginate @items, window: 1, outer_window: 1 %>
     </div>
   </article>
+  <%= turbo_frame_tag "modal", data: { controller: "modal" } %>
 </div>
