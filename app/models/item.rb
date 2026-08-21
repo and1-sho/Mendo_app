@@ -9,7 +9,15 @@ class Item < ApplicationRecord
   scope :discarded, -> { where.not(discarded_at: nil) }
 
   def discard
-    update(discarded_at: Time.current)
+    # update_columns で確実に DB へ書く（バリデーションを経由しない）
+    update_columns(discarded_at: Time.current, updated_at: Time.current)
+    true
+  end
+
+  # 論理削除を取り消して一覧に戻す
+  def undiscard
+    update_columns(discarded_at: nil, updated_at: Time.current)
+    true
   end
 
   def discarded?

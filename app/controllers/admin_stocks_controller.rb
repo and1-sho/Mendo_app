@@ -5,7 +5,7 @@ class AdminStocksController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    @item = Item.kept.find(params[:id])
 
     if turbo_frame_request?
       render partial: "item_detail_modal", locals: { item: @item }

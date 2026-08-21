@@ -2,6 +2,7 @@
   <h1 class="text-center text-[28px] pt-30 pb-18 font-extrabold tracking-widest md:text-4xl md:pt-28 md:pb-22 lg:pt-20 lg:pb-18">備品一覧</h1>
 
   <%= render "list_tabs" %>
+  <p><%= link_to "削除済み", admin_discarded_items_path %></p>
 
   <div class="absolute top-3 right-3 grid grid-cols-2 gap-2 tracking-widest">
     <div class="text-center text-sm font-semibold bg-orange-400 text-white rounded-lg js-button" data-sound="delete"><%= link_to "トップに戻る", root_path, class: "cursor-pointer block py-[14px] px-5 md:py-4 md:pt-[18px] md:px-8" %></div>
@@ -67,7 +68,7 @@
 
                 <%= button_to admin_item_path(item),
                       method: :delete,
-                      form: { data: { turbo_confirm: "削除してよいですか？" } },
+                      form: { data: { turbo_confirm: "削除してよいですか？", turbo_frame: "_top" } },
                       data: { sound: "delete" },
                       class: "cursor-pointer icon-button flex items-center -ml-[4px] js-button lg:-ml-[2px]" do %>
                   <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -108,7 +109,7 @@
               <%= link_to "入庫する", new_admin_item_stock_receipt_path(item), class: "text-sm font-semibold icon-button bg-orange-400 py-3 text-white text-center rounded-lg js-button", data: { sound: "confirm", turbo_frame: "_top" } %>
               <%= button_to admin_item_path(item),
                 method: :delete,
-                form: { data: { turbo_confirm: "削除してよいですか？" } },
+                form: { data: { turbo_confirm: "削除してよいですか？", turbo_frame: "_top" } },
                 data: { sound: "delete" },
                 class: "text-sm font-semibold icon-button bg-white py-[10px] text-accent border-[1.5px] border-orange-400 w-full rounded-lg js-button" do %>
                 <span>削除する</span>
