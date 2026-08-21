@@ -1,23 +1,14 @@
 <%# 管理画面：備品詳細（見た目はスタッフ担当。クラスは付けない） %>
 
-<h1>詳細</h1>
+<div class="relative min-h-svh">
+  <h1 class="text-center text-[28px] pt-22 pb-18 font-extrabold tracking-widest md:text-4xl md:pt-28 md:pb-22 lg:pt-20 lg:pb-18">詳細</h1>
 
-<p>商品番号: <%= @item.item_code %></p>
-<p>
-  <% if @item.image_displayable? %>
-    <%= image_tag @item.image, width: 200 %>
-  <% else %>
-    画像なし
-  <% end %>
-</p>
-<p>備品名: <%= @item.name %></p>
-<p>在庫数: <%= @item.stock %></p>
-<p>注文トリガー数: <%= @item.order_trigger %></p>
-<p>目標補充数: <%= @item.reorder_quantity %></p>
-
-<p>
-  <%= link_to "入庫", new_admin_item_stock_receipt_path(@item) %>
-  <%= link_to "編集する", edit_admin_item_path(@item) %>
-</p>
-
-<p><%= link_to "在庫一覧に戻る", admin_stocks_path %></p>
+  <article class="w-screen h-full bg-neutral-100 pt-10 pb-14 ">
+    <%= render "item_detail", item: @item %>
+  </article>
+  <p class="flex justify-center my-8 mx-auto">
+    <%= link_to "在庫一覧に戻る", admin_stocks_path,
+      data: { sound: "delete" },
+      class: "inline-block text-xm text-center font-semibold icon-button bg-orange-400 py-3 border-[1.5px] text-white border-orange-400 w-45 rounded-lg js-button", data: { sound: "confirm" } %>
+  </p>
+</div>
