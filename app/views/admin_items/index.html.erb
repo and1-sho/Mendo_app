@@ -68,7 +68,7 @@
 
                 <%= button_to admin_item_path(item),
                       method: :delete,
-                      form: { data: { turbo_confirm: "削除してよいですか？" } },
+                      form: { data: { turbo_confirm: "削除してよいですか？", turbo_frame: "_top" } },
                       data: { sound: "delete" },
                       class: "cursor-pointer icon-button flex items-center -ml-[4px] js-button lg:-ml-[2px]" do %>
                   <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -109,7 +109,7 @@
               <%= link_to "入庫する", new_admin_item_stock_receipt_path(item), class: "text-sm font-semibold icon-button bg-orange-400 py-3 text-white text-center rounded-lg js-button", data: { sound: "confirm", turbo_frame: "_top" } %>
               <%= button_to admin_item_path(item),
                 method: :delete,
-                form: { data: { turbo_confirm: "削除してよいですか？" } },
+                form: { data: { turbo_confirm: "削除してよいですか？", turbo_frame: "_top" } },
                 data: { sound: "delete" },
                 class: "text-sm font-semibold icon-button bg-white py-[10px] text-accent border-[1.5px] border-orange-400 w-full rounded-lg js-button" do %>
                 <span>削除する</span>
